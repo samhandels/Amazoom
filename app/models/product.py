@@ -8,14 +8,14 @@ class Product(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(1000), nullable=False)
+    name = db.Column(db.String(2500), nullable=False)
     price = db.Column(db.Numeric(precision=6, scale=2), nullable=False)
     description = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    category = db.Column(db.String(50))
+    category = db.Column(db.String(100))
     quantity = db.Column(db.Integer)
     # AWS
-    image = db.Column(db.String(1000))
+    image = db.Column(db.String(2500))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
