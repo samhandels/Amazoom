@@ -19,11 +19,9 @@ class Product(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-
-#relationship attribute
+    # relationship attribute
     users = db.relationship("User", back_populates="products")
     shopping_cart_items = db.relationship("ShoppingCartItems", back_populates="products", cascade="all, delete")
-
 
     def to_dict(self):
         return {
