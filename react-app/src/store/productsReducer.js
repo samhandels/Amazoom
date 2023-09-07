@@ -1,9 +1,9 @@
 //Types
-const LOAD_PRODUCTS = 'samazon/products/LOAD_PRODUCTS';
-const LOAD_SINGLE_PRODUCT = 'samazon/products/LOAD_SINGLE_PRODUCT';
-const CREATE_PRODUCT = 'samazon/products/ADD_PRODUCT';
-const UPDATE_PRODUCT = 'samazon/products/UPDATE_PRODUCT';
-const DELETE_PRODUCT = 'samazon/products/DELETE_PRODUCT';
+const LOAD_PRODUCTS = 'products/LOAD_PRODUCTS';
+const LOAD_SINGLE_PRODUCT = 'products/LOAD_SINGLE_PRODUCT';
+const CREATE_PRODUCT = 'products/ADD_PRODUCT';
+const UPDATE_PRODUCT = 'products/UPDATE_PRODUCT';
+const DELETE_PRODUCT = 'products/DELETE_PRODUCT';
 
 
 //actions
@@ -83,29 +83,23 @@ export const removeProduct = (productId) => async (dispatch) => {
 
 
 //reducer
-const initialState = {
-    allProducts: {},
-    singleProduct: {},
+const initialState = {};
 
-};
-
-const productReducer = (state = initialState, action) => {
+export const productsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_PRODUCTS:
-            return { ...state, allProducts: { ...action.products } };
+            return { ...state, ...action.products };
         case LOAD_SINGLE_PRODUCT:
-            return { ...state, singleProduct: action.product };
+            return { ...state, ...action.product };
         case CREATE_PRODUCT:
-            return { ...state, allProducts: { ...state.allProducts, [action.product.id]: action.product } };
+            return { ...state, ...state.allProducts, [action.product.id]: action.product };
         case UPDATE_PRODUCT:
-            return { ...state, allProducts: { ...state.allProducts, [action.product.id]: action.product } };
+            return { ...state, ...state.allProducts, [action.product.id]: action.product };
         case DELETE_PRODUCT:
             const newState = { ...state };
-            delete newState.allProducts[action.productId];
+            delete newState[action.productId];
             return newState;
         default:
             return state;
     }
 };
-
-export default productReducer;

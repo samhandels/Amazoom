@@ -26,12 +26,23 @@ export const AllProducts = () => {
     delete productsObj[singleProdKey]
     const products = Object.values(productsObj)
 
-    // if (!products.length) return null
+    if (!products.length) return null
 
     return(
         <div>
-            <h1>hello world of products</h1>
+        <h1>All Products</h1>
+        <div className="products-container">
+            {products.map(product => (
+                <div key={product.id} className="product-card">
+                    <img src={product.image} alt={product.name} />
+                    <h2>{product.name}</h2>
+                    <p>{product.description}</p>
+                    <p>Price: ${product.price}</p>
+                    <p>Quantity: {product.quantity}</p>
+                </div>
+            ))}
         </div>
+    </div>
 
     )
 }
