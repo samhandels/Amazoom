@@ -32,11 +32,11 @@ function App() {
           <Route exact path="/">
             <LandingPage />
           </Route>
-          <Route path="/products">
-            <AllProducts />
-          </Route>
           <Route path="/products/:productId">
             <ProductDetails />
+          </Route>
+          <Route path="/products">
+            <AllProducts />
           </Route>
         </Switch>
       )}
