@@ -53,14 +53,21 @@ export const fetchSingleProduct = (productId) => async (dispatch) => {
 };
 
 export const fetchcreateProduct = (productData) => async (dispatch) => {
-    console.log("PRODUCTDATA IN FETCH CREATE PRODUCT", productData)
+    console.log("PRODUCTDATA IN Thunk CREATE PRODUCT", productData)
     const response = await fetch('/api/products/new', {
         method: 'POST',
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productData)
     });
     if (response.ok) {
         const product = await response.json();
         dispatch(createProduct(product));
+    }
+    else {
+        const errors = await response.json()
+        console.log("ERRORS", errors)
+        return errors
+
     }
 };
 

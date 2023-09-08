@@ -66,13 +66,13 @@ def create_product():
       form = ProductForm()
 
       form["csrf_token"].data = request.cookies["csrf_token"]
-
       if form.validate_on_submit():
-
-            image = form.data['image']
+            image = form.data['image'] #image coming back as none
+            print("image in product create", image)
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             print(upload)
+            print("in product route *************")
 
             if "url" not in upload:
                 return {"errors": "URL not in upload"}

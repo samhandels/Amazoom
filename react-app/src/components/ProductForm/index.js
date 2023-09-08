@@ -62,9 +62,9 @@ export const ProductForm = ({ product, formType }) => {
     if (formType === "Update") {
         const updatedProduct = await dispatch(editProduct(product))
         history.replace(`/products/${updatedProduct.singleProduct.id}`)
-    } else if (formType === "Create") {
+    } else {
         const newProduct = await dispatch(fetchcreateProduct(product));
-        history.replace(`/products/${newProduct.singleProduct.id}`)
+        history.replace(`/products/new`)
     }
 
     // if (data && data.errors) {
@@ -176,7 +176,7 @@ export const ProductForm = ({ product, formType }) => {
             <input
                 type="file"
                 name="image"
-                onChange={(e) => setImage(e.target.files[0])} // Use e.target.files[0] to set the image
+                onChange={(e) => setImage(e.target.files[0])}
                 accept="image/*"
                 required
             />
