@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, NumberRange, ValidationError, Lengt
 from wtforms import StringField, SubmitField, FloatField, TextAreaField, IntegerField
 from ..api.aws_helper import ALLOWED_EXTENSIONS
 
-categories = ['Electronics', 'Books', 'Sports & Outdoors', 'Home', 'Amazon Basics', 'Pet Supplies', 'Beauty']
+categories = ['Electronics', 'Books', 'Sports & Outdoors', 'Home', 'Amazon Basics', 'Pet Supplies', 'Beauty', 'Other']
 
 
 def validate_category(form, field):

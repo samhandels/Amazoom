@@ -53,6 +53,7 @@ export const fetchSingleProduct = (productId) => async (dispatch) => {
 };
 
 export const fetchcreateProduct = (productData) => async (dispatch) => {
+    console.log("PRODUCTDATA IN FETCH CREATE PRODUCT", productData)
     const response = await fetch('/api/products/new', {
         method: 'POST',
         body: JSON.stringify(productData)

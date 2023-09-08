@@ -10,6 +10,7 @@ import { AllProducts } from "./components/AllProducts";
 import { ProductDetails } from "./components/ProductDetails";
 import { Footer } from "./components/Footer"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import { ProductForm } from "./components/ProductForm";
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <LandingPage />
+          </Route>
+          <Route exact path="/products/new">
+            <ProductForm />
           </Route>
           <Route path="/products/:productId">
             <ProductDetails />
