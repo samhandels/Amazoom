@@ -46,6 +46,8 @@ export const fetchSingleProduct = (productId) => async (dispatch) => {
     const response = await fetch(`/api/products/${productId}`);
     if (response.ok) {
         const product = await response.json();
+        const products = {}
+        products.singleProduct = { ...product }
         dispatch(loadSingleProduct(product));
     }
 };
@@ -90,7 +92,7 @@ export const productsReducer = (state = initialState, action) => {
         case LOAD_PRODUCTS:
             return { ...state, ...action.products };
         case LOAD_SINGLE_PRODUCT:
-            return { ...state, ...action.product };
+            return { ...state, singleProduct: action.product };
         case CREATE_PRODUCT:
             return { ...state, ...state.allProducts, [action.product.id]: action.product };
         case UPDATE_PRODUCT:

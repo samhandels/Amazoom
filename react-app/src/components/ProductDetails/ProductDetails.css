@@ -1,0 +1,74 @@
+.product-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.product-details-display-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 1.2rem;
+    max-width: 1500px;
+    padding: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.product-details-display-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-details-display-img > img {
+    padding: 12px;
+    min-width: 300px;
+    max-width: 440px;
+}
+
+.product-details-name {
+    font-size: 24px;
+}
+
+.product-details-price {
+    font-size: 13px;
+    display: flex;
+    padding-top: 5px;
+}
+
+.product-details-price > p {
+    padding-top: 5px;
+}
+
+.product-details-price > span {
+    font-size: 28px;
+}
+
+.product-details-returns {
+    font-size: 14px;
+    color: #007185;
+}
+
+.product-details-description {
+    margin-top: 20px;
+}
+
+.product-details-description > h4 {
+    font-size: 17px;
+    padding-bottom: 4px;
+}
+
+.product-details-description-list {
+    padding-left: 18px;
+}
+
+.product-details-description-list > li {
+    padding: 3px 0;
+    font-size: 15px;
+}
+
+.prime-logo {
+    max-width: 4rem;
+    margin-bottom: .6rem;
+}

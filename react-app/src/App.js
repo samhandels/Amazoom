@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import { LandingPage } from "./components/LandingPage";
 import { AllProducts } from "./components/AllProducts";
 import { ProductDetails } from "./components/ProductDetails";
+import { Footer } from "./components/Footer"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 
@@ -40,6 +41,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
