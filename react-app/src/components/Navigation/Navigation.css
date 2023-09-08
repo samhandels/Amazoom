@@ -36,6 +36,8 @@
   align-items: center;
   gap: 10px;
   flex-grow: 1;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .search-bar-input {
@@ -47,7 +49,11 @@
   border-radius: 5px;
 }
 
-.hide-that-button {
+.shoppingcart {
+  max-width: 2.5rem;
+}
+
+.fa-magnifying-glass {
   background-color: #FEBD69;
   color: black;
   border: none;

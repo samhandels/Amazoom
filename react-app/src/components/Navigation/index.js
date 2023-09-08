@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import samazonLogo from './samazonwhite.png';
+import shoppingcart from './shopping-cart-white.png';
 
 
 function Navigation({ isLoaded }) {
@@ -23,7 +24,7 @@ function Navigation({ isLoaded }) {
           type="text"
           placeholder="Search for anything"
         />
-        <i className="fa-solid fa-magnifying-glass search-icon" onClick={null}></i>
+        <i className="fa-solid fa-magnifying-glass" style={{color: "#343433",}} onClick={null}></i>
       </div>
       <ul>
         <li>
@@ -43,7 +44,8 @@ function Navigation({ isLoaded }) {
         <li>
           <NavLink exact to="/shopping_cart/current">
             <div className="cart">
-              <i className="nav-link fa-solid fa-cart-shopping"></i>
+              {/* <i className="nav-link fa-solid fa-cart-shopping"></i> */}
+              <img className='shoppingcart' src={shoppingcart}></img>
             </div>
           </NavLink>
         </li>
