@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import './LandingPage.css';
@@ -29,10 +29,28 @@ export const LandingPage = () => {
         return s.substring(0, 29) + "...";
     }
 
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    
+    const carouselImages = [
+        "https://m.media-amazon.com/images/I/718m-LaIwaL._SX3000_.jpg",
+        "https://m.media-amazon.com/images/I/7149SrIuXaL._SX3000_.jpg",
+        "https://m.media-amazon.com/images/I/61E7T9rAKlL._SX3000_.jpg",
+    ];
+
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
+    };
+
+    useEffect(() => {
+        const interval = setInterval(nextImage, 5000); // Change the time interval as needed
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className="landing__container">
             <div className="landing_banner">
-                <img src="https://m.media-amazon.com/images/I/718m-LaIwaL._SX3000_.jpg" alt="landing" />
+            <img src={carouselImages[currentImageIndex]} alt="landing" />
                 <div className="landing__categories">
                     <div className="landing__category">
                         <h3>Electronics Center</h3>

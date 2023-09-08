@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import samazonLogo from './samazonwhite.png';
 
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
@@ -22,7 +23,7 @@ function Navigation({ isLoaded }) {
           type="text"
           placeholder="Search for anything"
         />
-        <button className="hide-that-button"><i className="fa-solid fa-magnifying-glass"></i></button>
+        <i className="fa-solid fa-magnifying-glass search-icon" onClick={null}></i>
       </div>
       <ul>
         <li>

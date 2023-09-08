@@ -7,6 +7,9 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { LandingPage } from "./components/LandingPage";
 import { AllProducts } from "./components/AllProducts";
+import { ProductDetails } from "./components/ProductDetails";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +34,9 @@ function App() {
           </Route>
           <Route path="/products">
             <AllProducts />
+          </Route>
+          <Route path="/products/:productId">
+            <ProductDetails />
           </Route>
         </Switch>
       )}
