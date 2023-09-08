@@ -20,7 +20,7 @@ def seed_products():
         user_id=2,
         category='Books',
         quantity=5,
-        image='https://d1b14unh5d6w7g.cloudfront.net/1878424319.01.S001.JUMBOXXX.jpg?Expires=1694187741&Signature=Q2BNCp836mpu7BjO0BOFWYS3i30TPHlNjSyc0u55pLr8YabruuSd6WSYy0J1M67hpFTxUNfb51fq3Hejpm~1iwaHNRbj8lKeVt5Q3fT0EZ4b--fCcKONTXmOmyuJV3K-PHmzMqlWcTi4UvYGSLhm7aPZrlhXHLN8rR6~njBW-0w_&Key-Pair-Id=APKAIUO27P366FGALUMQ'
+        image='https://m.media-amazon.com/images/I/61bzSxyLLlL.jpg'
     )
     product3 = Product(
         name='2021 TaylorMade Distance+ Golf Balls',
