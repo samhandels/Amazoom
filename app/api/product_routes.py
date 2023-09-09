@@ -92,5 +92,5 @@ def create_product():
             print(new_product)
             db.session.add(new_product)
             db.session.commit()
-            return {"product": Product.to_dict()}, 201
+            return {"product": new_product.to_dict()}, 201
       return {'errors': validation_errors_to_error_messages(form.errors)}, 400

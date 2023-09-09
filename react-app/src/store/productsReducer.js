@@ -53,28 +53,40 @@ export const fetchSingleProduct = (productId) => async (dispatch) => {
 };
 
 export const fetchcreateProduct = (productData) => async (dispatch) => {
-    console.log("PRODUCTDATA IN Thunk CREATE PRODUCT", productData)
-    const response = await fetch('/api/products/new', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(productData)
-    });
-    if (response.ok) {
-        const product = await response.json();
-        dispatch(createProduct(product));
-    }
-    else {
-        const errors = await response.json()
-        console.log("ERRORS", errors)
-        return errors
+    try {
+        console.log("PRODUCTDATA IN Thunk CREATE PRODUCT", productData)
 
+        const formData = new FormData();
+
+        for (const key in productData) {
+            if (key === 'image') {
+                formData.append('image', productData.image);
+            } else {
+                formData.append(key, productData[key]);
+            }
+        }
+        const response = await fetch('/api/products/new', {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            const product = await response.json();
+            dispatch(createProduct(product));
+        } else {
+            const errors = await response.json();
+            console.log("ERRORS", errors);
+            return errors;
+        }
+    } catch (error) {
+        console.error('Error creating product:', error);
     }
 };
+
 
 export const editProduct = (productId, productData) => async (dispatch) => {
     const response = await fetch(`/api/products/${productId}`, {
         method: 'PUT',
-        body: JSON.stringify(productData)
+        body: productData
     });
     if (response.ok) {
         const product = await response.json();
@@ -101,8 +113,14 @@ export const productsReducer = (state = initialState, action) => {
             return { ...state, ...action.products };
         case LOAD_SINGLE_PRODUCT:
             return { ...state, singleProduct: action.product };
-        case CREATE_PRODUCT:
-            return { ...state, ...state.allProducts, [action.product.id]: action.product };
+        case CREATE_PRODUCT: {
+            const newState = { ...state };
+            const allProducts = {...state.allProducts, [action.product.id]: action.product }
+            newState.allProducts = allProducts
+            console.log("NEWSTATE.ALLPRODUCTS IN REDUCER", newState.allProducts)
+            console.log("action product in product reducer -------", action.product)
+            return newState;
+        }
         case UPDATE_PRODUCT:
             return { ...state, ...state.allProducts, [action.product.id]: action.product };
         case DELETE_PRODUCT:
