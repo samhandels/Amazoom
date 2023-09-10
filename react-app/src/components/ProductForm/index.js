@@ -84,7 +84,7 @@ export const ProductForm = ({ product, formType }) => {
 
   return (
     <div className="product-form-container">
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
         <div className="form-line">
           <label>Product Name*</label>
           <input
