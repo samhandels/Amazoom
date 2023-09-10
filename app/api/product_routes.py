@@ -67,7 +67,8 @@ def create_product():
 
       form["csrf_token"].data = request.cookies["csrf_token"]
       if form.validate_on_submit():
-            image = form.data['image'] #image coming back as none
+            # image = form.data['image'] #image coming back as none
+            image = request.files['image']
             print("image in product create", image)
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
