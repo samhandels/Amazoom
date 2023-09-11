@@ -9,15 +9,6 @@ export const ProductForm = ({ product, formType }) => {
   const history = useHistory();
   const fileRef = useRef();
 
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     price: 0.99,
-//     description: '',
-//     category: '',
-//     quantity: 1,
-//     image: null,
-//   });
-
   const [name, setName] = useState(product?.name ?? '');
   const [price, setPrice] = useState(product?.price ?? .99);
   const [description, setDescription] = useState(product?.description ?? '');
@@ -41,14 +32,6 @@ export const ProductForm = ({ product, formType }) => {
 
     // Form validation here
 
-    // const formData = new FormData();
-    // formData.append('name', formData.name);
-    // formData.append('price', formData.price);
-    // formData.append('description', formData.description);
-    // formData.append('category', formData.category);
-    // formData.append('quantity', formData.quantity);
-    // formData.append('image', formData.image);
-
     product = {
         ...product,
         name,
@@ -64,7 +47,7 @@ export const ProductForm = ({ product, formType }) => {
         history.replace(`/products/${updatedProduct.singleProduct.id}`)
     } else {
         const newProduct = await dispatch(fetchcreateProduct(product));
-        history.replace(`/products/new`)
+        history.replace(`/products/${newProduct.product.id}`)
     }
 
     // if (data && data.errors) {

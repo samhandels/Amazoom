@@ -72,6 +72,7 @@ export const fetchcreateProduct = (productData) => async (dispatch) => {
         if (response.ok) {
             const product = await response.json();
             dispatch(createProduct(product));
+            return product
         } else {
             const errors = await response.json();
             console.log("ERRORS", errors);
@@ -115,7 +116,9 @@ export const productsReducer = (state = initialState, action) => {
             return { ...state, singleProduct: action.product };
         case CREATE_PRODUCT: {
             const newState = { ...state };
-            const allProducts = {...state.allProducts, [action.product.id]: action.product }
+            const productData = action.product.product;
+            const allProducts = {...state.allProducts, [productData.id]: productData }
+            // const allProducts = {...state.allProducts, [action.product.id]: action.product }
             newState.allProducts = allProducts
             console.log("NEWSTATE.ALLPRODUCTS IN REDUCER", newState.allProducts)
             console.log("action product in product reducer -------", action.product)
