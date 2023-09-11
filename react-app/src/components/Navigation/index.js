@@ -42,7 +42,7 @@ function Navigation({ isLoaded }) {
           </div>
         </li>
         <li>
-          <NavLink exact to="/shopping_cart/current">
+          <NavLink exact to="/cart">
             <div className="cart">
               {/* <i className="nav-link fa-solid fa-cart-shopping"></i> */}
               <img className='shoppingcart' src={shoppingcart}></img>

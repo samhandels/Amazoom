@@ -4,6 +4,7 @@ from ..models.product import Product
 from ..models.shopping_cart import ShoppingCart
 from ..models.shopping_cart_item import ShoppingCartItems
 from ..forms.product_form import ProductForm
+from ..forms.cart_item_form import CartItemForm
 from datetime import datetime
 from .auth_routes import validation_errors_to_error_messages
 from flask_login import login_required, current_user # current_user.id
@@ -147,3 +148,59 @@ def delete_product(id):
     db.session.commit()
 
     return {"message": "Product deleted successfully"}
+
+
+NotFoundError = {"error": "Not Found"}, 404
+ForbiddenError = {"error": "Forbidden"}, 403
+
+# ADD product to cart
+@products.route("/<int:id>/add", methods=["POST"])
+@login_required
+def add_product_to_cart(id):
+    product = Product.query.get(id)
+
+    if not product:
+        error = NotFoundError('Product Not Found')
+        return error.error_json()
+
+    # check if product is in stock
+    if product.stock_quantity <= 0:
+        error = ForbiddenError('Out of stock!')
+        return error.error_json()
+
+    # if user has no cart, create one
+    if not current_user.carts:
+        new_cart = ShoppingCart(
+            user_id=current_user.id,
+            total_price=0
+        )
+        db.session.add(new_cart)
+        db.session.commit()
+
+    # add cart item to cart
+    form = CartItemForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        cart_item = ShoppingCartItems(
+            cart_id=current_user.carts[0].id,
+            product_id=product.id,
+            quantity=form.data["quantity"],
+            subtotal=product.price * form.data["quantity"]
+        )
+
+        current_user.carts[0].total_price += cart_item.subtotal
+        product.stock_quantity -= cart_item.quantity
+
+        # if item already in cart, add quantity
+        for item in current_user.carts[0].cart_items:
+            if item.product_id == product.id:
+                item.quantity += cart_item.quantity
+                item.subtotal += cart_item.subtotal
+
+                db.session.commit()
+                return {"cart_item": item.to_dict()}
+
+        db.session.add(cart_item)
+        db.session.commit()
+
+        return {"cart_item": cart_item.to_dict()}
