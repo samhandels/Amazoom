@@ -26,8 +26,8 @@ export const ProductDetails = () => {
 
     const handleUpdateClick = () => {
         history.push({
-            pathname: `/products/update/${product.id}`,
-            state: { product: product, formType: "Update" }
+            pathname: `/products/new`,
+            state: { productToUpdate: product }
         });
     }
 

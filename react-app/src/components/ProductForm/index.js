@@ -1,6 +1,6 @@
-import React, { useState, useRef, useLocation } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { fetchcreateProduct, editProduct } from '../../store/productsReducer';
 import './ProductForm.css';
 
@@ -8,9 +8,8 @@ export const ProductForm = ({ product, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const fileRef = useRef();
-//   const location = useLocation();
-//   const productFromState = location.state?.product;
-//   const formTypeFromState = location.state?.formType;
+  const location = useLocation();
+  const productToUpdate = location.state?.productToUpdate;
 
   const [name, setName] = useState(product?.name ?? '');
   const [price, setPrice] = useState(product?.price ?? .99);
@@ -19,16 +18,16 @@ export const ProductForm = ({ product, formType }) => {
   const [quantity, setQuantity] = useState(product?.quantity ?? 1);
   const [image, setImage] = useState(product?.image ?? null);
   const [errors, setErrors] = useState({});
+  
+// const [name, setName] = useState(productToUpdate?.name ?? '');
+// const [price, setPrice] = useState(productToUpdate?.price ?? .99);
+// const [description, setDescription] = useState(productToUpdate?.description ?? '');
+// const [category, setCategory] = useState(productToUpdate?.category ?? '');
+// const [quantity, setQuantity] = useState(productToUpdate?.quantity ?? 1);
+// const [image, setImage] = useState(productToUpdate?.image ?? null);
+// const [errors, setErrors] = useState({});
 
-//   const handleChange = (e) => {
-//     const { name, value, type, files } = e.target;
-//     const newValue = type === 'file' ? files[0] : value;
 
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [name]: newValue,
-//     }));
-//   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,12 +60,6 @@ export const ProductForm = ({ product, formType }) => {
         history.replace(`/products/${newProduct.product.id}`)
     }
 
-    // if (data && data.errors) {
-    //   setErrors(data.errors);
-    // } else {
-    //   history.push(`/products`);
-    //   window.location.reload();
-    // }
   };
 
   const handleImageUpload = (e) => {
