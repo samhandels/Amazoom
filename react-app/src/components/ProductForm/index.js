@@ -11,40 +11,18 @@ export const ProductForm = ({ product, formType }) => {
   const location = useLocation();
   const productToUpdate = location.state?.productToUpdate;
 
-  const [name, setName] = useState(product?.name ?? '');
-  const [price, setPrice] = useState(product?.price ?? .99);
-  const [description, setDescription] = useState(product?.description ?? '');
-  const [category, setCategory] = useState(product?.category ?? '');
-  const [quantity, setQuantity] = useState(product?.quantity ?? 1);
-  const [image, setImage] = useState(product?.image ?? null);
+  const [name, setName] = useState(productToUpdate?.name ?? '');
+  const [price, setPrice] = useState(productToUpdate?.price ?? .99);
+  const [description, setDescription] = useState(productToUpdate?.description ?? '');
+  const [category, setCategory] = useState(productToUpdate?.category ?? '');
+  const [quantity, setQuantity] = useState(productToUpdate?.quantity ?? 1);
+  const [image, setImage] = useState(productToUpdate?.image ?? null);
   const [errors, setErrors] = useState({});
-  
-// const [name, setName] = useState(productToUpdate?.name ?? '');
-// const [price, setPrice] = useState(productToUpdate?.price ?? .99);
-// const [description, setDescription] = useState(productToUpdate?.description ?? '');
-// const [category, setCategory] = useState(productToUpdate?.category ?? '');
-// const [quantity, setQuantity] = useState(productToUpdate?.quantity ?? 1);
-// const [image, setImage] = useState(productToUpdate?.image ?? null);
-// const [errors, setErrors] = useState({});
 
-
-
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Form validation here
-
-    product = {
-        ...product,
-        name,
-        price,
-        description,
-        category,
-        quantity,
-        image
-    }
-
-    if (formType === "Update") {
+    if (productToUpdate) {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('price', price);
@@ -53,14 +31,22 @@ export const ProductForm = ({ product, formType }) => {
         formData.append('quantity', quantity);
         if (image) formData.append('image', image);
 
-        const updatedProduct = await dispatch(editProduct(product.id, formData))
-        history.replace(`/products/${updatedProduct.singleProduct.id}`)
+        const updatedProduct = await dispatch(editProduct(productToUpdate.id, formData));
+        history.replace(`/products/${updatedProduct.product.id}`);
     } else {
-        const newProduct = await dispatch(fetchcreateProduct(product));
-        history.replace(`/products/${newProduct.product.id}`)
-    }
+        const productData = {
+            name,
+            price,
+            description,
+            category,
+            quantity,
+            image
+        };
 
-  };
+        const newProduct = await dispatch(fetchcreateProduct(productData));
+        history.replace(`/products/${newProduct.product.id}`);
+    }
+};
 
   const handleImageUpload = (e) => {
     e.preventDefault();
@@ -157,7 +143,7 @@ export const ProductForm = ({ product, formType }) => {
                 </button>
             ) : (
                 <div className="form__file-pic">
-                <img src={URL.createObjectURL(image)} alt="preview" />
+                    <img src={image instanceof File ? URL.createObjectURL(image) : image} alt="preview" />
                 </div>
             )}
             <input
@@ -170,7 +156,7 @@ export const ProductForm = ({ product, formType }) => {
             {errors.image && <p className="form-errors">{errors.image}</p>}
         </div>
         <div className="form-submit">
-          <button type="submit">List Product</button>
+            <button type="submit">{productToUpdate ? "Update Product" : "List Product"}</button>
         </div>
       </form>
     </div>
