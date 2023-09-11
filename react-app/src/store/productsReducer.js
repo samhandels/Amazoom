@@ -92,6 +92,7 @@ export const editProduct = (productId, productData) => async (dispatch) => {
     if (response.ok) {
         const product = await response.json();
         dispatch(updateProduct(product));
+        return product;
     }
 };
 
