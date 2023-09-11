@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { fetchSingleProduct, fetchProducts } from "../../store/productsReducer";
+import { useParams, useHistory } from "react-router-dom";
+import { fetchSingleProduct, fetchProducts, editProduct, removeProduct } from "../../store/productsReducer";
 import './ProductDetails.css';
 import prime from './prime-logo.png'
 
 export const ProductDetails = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const products = useSelector((state) => state.products);
-    // const product = products.fetchSingleProduct?.product;
     const product = useSelector((state) =>
         state.products ? state.products.singleProduct : null
-    )
+    );
+    const currentUser = useSelector(state => state.session.user);
 
-    console.log('product products', product, products)
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
@@ -22,6 +22,18 @@ export const ProductDetails = () => {
     useEffect(() => {
         dispatch(fetchSingleProduct(productId));
     }, [dispatch, productId]);
+
+    const handleUpdateClick = () => {
+
+    }
+
+    const handleDeleteClick = async () => {
+        const confirmed = window.confirm("Are you sure you want to delete this product?");
+        if (confirmed) {
+            await dispatch(removeProduct(product.id));
+            history.push('/'); 
+        }
+    }
 
     if (!product) {
         return <div>Loading...</div>;
@@ -51,6 +63,12 @@ export const ProductDetails = () => {
                             ))}
                         </ul>
                     </div>
+                    {currentUser && currentUser.id === product.user_id && (
+                        <div>
+                            <button onClick={handleUpdateClick}>Update Product</button>
+                            <button onClick={handleDeleteClick}>Delete Product</button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

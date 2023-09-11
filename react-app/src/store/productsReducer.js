@@ -125,7 +125,7 @@ export const productsReducer = (state = initialState, action) => {
             return { ...state, ...state.allProducts, [action.product.id]: action.product };
         case DELETE_PRODUCT:
             const newState = { ...state };
-            delete newState[action.productId];
+            delete newState[action.product.id];
             return newState;
         default:
             return state;
