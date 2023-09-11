@@ -135,6 +135,7 @@ def update_product(id):
 @products.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_product(id):
+    print("DELETE route accessed for product:", id)
     product = Product.query.get(id)
     if not product:
         return {"errors": "Product not found"}, 404
