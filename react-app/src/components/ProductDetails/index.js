@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLocation } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { fetchSingleProduct, fetchProducts, editProduct, removeProduct } from "../../store/productsReducer";
@@ -15,6 +15,7 @@ export const ProductDetails = () => {
     );
     const currentUser = useSelector(state => state.session.user);
 
+
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
@@ -24,14 +25,17 @@ export const ProductDetails = () => {
     }, [dispatch, productId]);
 
     const handleUpdateClick = () => {
-
+        history.push({
+            pathname: `/products/update/${product.id}`,
+            state: { product: product, formType: "Update" }
+        });
     }
 
     const handleDeleteClick = async () => {
         const confirmed = window.confirm("Are you sure you want to delete this product?");
         if (confirmed) {
             await dispatch(removeProduct(product.id));
-            history.push('/'); 
+            history.push('/');
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLocation } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchcreateProduct, editProduct } from '../../store/productsReducer';
@@ -8,6 +8,9 @@ export const ProductForm = ({ product, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const fileRef = useRef();
+//   const location = useLocation();
+//   const productFromState = location.state?.product;
+//   const formTypeFromState = location.state?.formType;
 
   const [name, setName] = useState(product?.name ?? '');
   const [price, setPrice] = useState(product?.price ?? .99);
@@ -43,7 +46,15 @@ export const ProductForm = ({ product, formType }) => {
     }
 
     if (formType === "Update") {
-        const updatedProduct = await dispatch(editProduct(product))
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('description', description);
+        formData.append('category', category);
+        formData.append('quantity', quantity);
+        if (image) formData.append('image', image);
+
+        const updatedProduct = await dispatch(editProduct(product.id, formData))
         history.replace(`/products/${updatedProduct.singleProduct.id}`)
     } else {
         const newProduct = await dispatch(fetchcreateProduct(product));
