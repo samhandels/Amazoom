@@ -30,6 +30,7 @@ export const getCart = () => async (dispatch) => {
     const response = await fetch('/api/cart');
     if (response.ok) {
         const data = await response.json();
+        console.log("data in getCart Thunk *****************", data)
         dispatch(getCartAction(data));
         return data;
     }
@@ -76,16 +77,9 @@ const initialState = { items: {}, total: 0 };
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CART:
-            const items = action.payload.cart_item.reduce((acc, item) => {
-                acc[item.id] = item;
-                return acc;
-            }, {});
-            const total = Object.values(items).reduce((sum, item) => sum + (item.price * item.quantity), 0);
             return {
-                ...state,
-                items: items,
-                total: total
-            };
+                ...state, ...action.payload
+            }
         case ADD_TO_CART:
             return {
                 ...state,
