@@ -13,14 +13,15 @@ ForbiddenError = {"error": "Forbidden"}, 403
 @cart_routes.route("")
 @login_required
 def get_my_cart():
+    print("inside getCart route --------------------------------------")
     userId = current_user.id
-    cart = ShoppingCart.query.filter(ShoppingCart.user_id == userId).first()
-
-    if not cart:
+    cart1 = ShoppingCart.query.filter(ShoppingCart.user_id == userId)
+    print("userId and cart in getCart route ------------------------------",userId, cart1)
+    if not cart1:
         error = NotFoundError('No Cart Found, add items to cart!')
         return error.error_json()
-
-    return {'cart': cart.to_dict()}
+    response = [cart.to_dict() for cart in cart1]
+    return {'cart': response}
 
 # REMOVE item from cart
 @cart_routes.route("/<int:id>", methods=["DELETE"])

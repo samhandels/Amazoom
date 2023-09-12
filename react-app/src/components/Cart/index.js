@@ -9,11 +9,15 @@ export const Cart = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const cart = useSelector(state => state.cart);
-    const cartItems = cart ? Object.values(cart.items) : [];
+    const cartItems = cart ? Object.values(cart) : null;
+    console.log("cartItems inside of cart index --------------------------",cartItems)
 
     useEffect(() => {
+        console.log("getCart in Cart Index.js useEffect -------------", getCart)
         dispatch(getCart());
     }, [dispatch]);
+
+    console.log("CART inside of cart/index.js ********************",cart)
 
     const sendToCheckout = () => {
         history.push('/checkout');

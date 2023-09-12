@@ -8,7 +8,7 @@ export const CartItem = ({ item }) => {
     const history = useHistory();
 
     const [quantity, setQuantity] = useState(item.quantity);
-
+    console.log("item inside cartItem.js *********************", item)
     useEffect(() => {
         dispatch(getCart());
     }, [quantity, dispatch]);
@@ -24,8 +24,8 @@ export const CartItem = ({ item }) => {
 
 
     let stockLength = item.quantity;
-    if (item.product.stock_quantity > item.quantity) {
-        stockLength = item.product.stock_quantity;
+    if (item.product.quantity > item.quantity) {
+        stockLength = item.product.quantity;
     }
 
     return (
@@ -41,7 +41,7 @@ export const CartItem = ({ item }) => {
                     <img src='/images/prime-logo.png' alt='prime' className='prime-logo item__prime' />
                 </div>
                 <div className='item__edit-delete'>
-                    {item.product.stock_quantity > -1 ? (
+                    {item.product.quantity > -1 ? (
                         <select
                             value={quantity}
                             onChange={(e) => {
