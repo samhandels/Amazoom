@@ -78,7 +78,7 @@ export const cartReducer = (state = initialState, action) => {
         case GET_CART:
             return {
                 ...state,
-                items: action.payload.cart.cart_items.reduce((acc, item) => {
+                items: action.payload?.cart?.cart_item?.reduce((acc, item) => {
                     acc[item.id] = item;
                     return acc;
                 }, {}),

@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { removeFromCart, updateCart } from '../../store/cartReducer';
+import { removeFromCart, updateCart, getCart } from '../../store/cartReducer';
 
 export const CartItem = ({ item }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const [quantity, setQuantity] = useState(item.quantity);
+
+    useEffect(() => {
+        dispatch(getCart());
+    }, [quantity, dispatch]);
 
     const sendToProduct = (id) => {
         history.push(`/products/${id}`);
@@ -17,6 +21,7 @@ export const CartItem = ({ item }) => {
         dispatch(removeFromCart(productId));
         window.location.reload();
     };
+
 
     let stockLength = item.quantity;
     if (item.product.stock_quantity > item.quantity) {
