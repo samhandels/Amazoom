@@ -27,7 +27,7 @@ export const updateCartAction = (cartItem) => ({
 
 // THUNKS
 export const getCart = () => async (dispatch) => {
-    const response = await fetch('/api/carts');
+    const response = await fetch('/api/cart');
     if (response.ok) {
         const data = await response.json();
         dispatch(getCartAction(data));
@@ -49,7 +49,7 @@ export const addToCart = (quantity, productId) => async (dispatch) => {
 };
 
 export const removeFromCart = (productId) => async (dispatch) => {
-    const response = await fetch(`/api/carts/${productId}`, {
+    const response = await fetch(`/api/cart/${productId}`, {
         method: 'DELETE'
     });
     if (response.ok) {
@@ -58,7 +58,7 @@ export const removeFromCart = (productId) => async (dispatch) => {
 };
 
 export const updateCart = (quantity, productId) => async (dispatch) => {
-    const response = await fetch(`/api/carts/${productId}`, {
+    const response = await fetch(`/api/cart/${productId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ quantity })
