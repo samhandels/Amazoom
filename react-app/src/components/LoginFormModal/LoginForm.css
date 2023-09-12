@@ -1,0 +1,64 @@
+.login-modal {
+    margin: 0px 40px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 20px;
+}
+
+.login-field {
+    display: grid;
+
+}
+
+.sign-in-input-modal {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-button {
+    background-color: #f0c14b;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px 0px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #FA8900;
+}
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
+
+.samazon-logo-login {
+    max-width: 10rem;
+    margin-top: 2rem;
+}
+
+.terms-and-conditions {
+    font-size: 14px;
+}
+
+.error-ul {
+    list-style-type: none;
+    padding: 0;
+    color: red;
+    margin-bottom: 10px;
+}

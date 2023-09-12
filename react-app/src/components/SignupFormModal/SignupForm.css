@@ -1,0 +1,77 @@
+.signup-modal {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, 1fr);
+    row-gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.signup-field {
+    display: grid;
+    width: 100%;
+}
+
+.signup-button {
+    background-color: #f0c14b;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px 0px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+    background-color: #FA8900;
+}
+
+.signup-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.signup-subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
+
+.terms-and-conditions {
+    font-size: 14px;
+}
+
+.samazon-logo-signup {
+    max-width: 10rem;
+}
+
+.errors-ul-signup {
+    list-style-type: none;
+    padding: 0;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.input-field {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
