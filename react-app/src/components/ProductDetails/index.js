@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { fetchSingleProduct, fetchProducts, editProduct, removeProduct, clearSingleProduct } from "../../store/productsReducer";
+import { addToCart, getCart } from "../../store/cartReducer";
 import './ProductDetails.css';
 import prime from './prime-logo.png'
 
@@ -15,6 +16,7 @@ export const ProductDetails = () => {
         state.products ? state.products.singleProduct : null
     );
     const currentUser = useSelector(state => state.session.user);
+    const [quantity, setQuantity] = useState(1);
 
 
     useEffect(() => {
@@ -46,6 +48,17 @@ export const ProductDetails = () => {
             history.push('/');
         }
     }
+
+    const addToCartHandler = async () => {
+        if (!currentUser) {
+            history.push('/login');
+        } else {
+            await dispatch(addToCart(quantity, product.id));
+            dispatch(getCart());
+            history.push('/cart');
+        }
+    };
+
 
     if (!product) {
         return <div>Loading...</div>;
@@ -81,6 +94,9 @@ export const ProductDetails = () => {
                             <button onClick={handleDeleteClick}>Delete Product</button>
                         </div>
                     )}
+                <div>
+                    <button onClick={addToCartHandler}>Add to Cart</button>
+                </div>
                 </div>
             </div>
         </div>

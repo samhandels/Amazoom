@@ -7,12 +7,12 @@ from datetime import datetime
 #bobbie userId = 3, 2 products
 
 def seed_shopping_carts_items():
-    demo_cart_item1 = ShoppingCartItems(shoppingCartId=1, productId=2)
-    demo_cart_item2 = ShoppingCartItems(shoppingCartId=1, productId=3)
-    marnie_cart_item1 = ShoppingCartItems(shoppingCartId=2, productId=1)
-    marnie_cart_item2 = ShoppingCartItems(shoppingCartId=2, productId=3)
-    bobbie_cart_item1 = ShoppingCartItems(shoppingCartId=3, productId=1)
-    bobbie_cart_item2 = ShoppingCartItems(shoppingCartId=3, productId=2)
+    demo_cart_item1 = ShoppingCartItems(shoppingCartId=1, productId=2, quantity=1)
+    demo_cart_item2 = ShoppingCartItems(shoppingCartId=1, productId=3, quantity=2)
+    marnie_cart_item1 = ShoppingCartItems(shoppingCartId=2, productId=1, quantity=3)
+    marnie_cart_item2 = ShoppingCartItems(shoppingCartId=2, productId=3, quantity=2)
+    bobbie_cart_item1 = ShoppingCartItems(shoppingCartId=3, productId=1, quantity=1)
+    bobbie_cart_item2 = ShoppingCartItems(shoppingCartId=3, productId=2, quantity=1)
 
 #add to db
     items = [demo_cart_item1, demo_cart_item2, marnie_cart_item1 ,marnie_cart_item2, bobbie_cart_item1, bobbie_cart_item2]

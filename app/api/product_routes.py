@@ -157,50 +157,52 @@ ForbiddenError = {"error": "Forbidden"}, 403
 @products.route("/<int:id>/add", methods=["POST"])
 @login_required
 def add_product_to_cart(id):
-    product = Product.query.get(id)
+    try:
+        product = Product.query.get(id)
 
-    if not product:
-        error = NotFoundError('Product Not Found')
-        return error.error_json()
+        if not product:
+            error = NotFoundError('Product Not Found')
+            return error.error_json()
 
-    # check if product is in stock
-    if product.stock_quantity <= 0:
-        error = ForbiddenError('Out of stock!')
-        return error.error_json()
+        # check if product is in stock
+        if product.quantity <= 0:
+            error = ForbiddenError('Out of stock!')
+            return error.error_json()
 
-    # if user has no cart, create one
-    if not current_user.carts:
-        new_cart = ShoppingCart(
-            user_id=current_user.id,
-            total_price=0
-        )
-        db.session.add(new_cart)
-        db.session.commit()
+        # if user has no cart, create one
+        if not current_user.shopping_carts:
+            new_cart = ShoppingCart(user_id=current_user.id)
+            db.session.add(new_cart)
+            db.session.commit()
 
-    # add cart item to cart
-    form = CartItemForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        cart_item = ShoppingCartItems(
-            cart_id=current_user.carts[0].id,
-            product_id=product.id,
-            quantity=form.data["quantity"],
-            subtotal=product.price * form.data["quantity"]
-        )
+        # add cart item to cart
+        form = CartItemForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            cart_item = ShoppingCartItems(
+                shoppingCartId=current_user.shopping_carts[0].id,
+                productId=product.id,
+                quantity=form.data["quantity"]
+            )
 
-        current_user.carts[0].total_price += cart_item.subtotal
-        product.stock_quantity -= cart_item.quantity
+            # Deduct the product quantity
+            product.quantity -= form.data["quantity"]
 
-        # if item already in cart, add quantity
-        for item in current_user.carts[0].cart_items:
-            if item.product_id == product.id:
-                item.quantity += cart_item.quantity
-                item.subtotal += cart_item.subtotal
+            # if item already in cart, add quantity
+            for item in current_user.shopping_carts[0].shopping_cart_items:
+                if item.productId == product.id:
+                    item.quantity += form.data["quantity"]
+                    db.session.commit()
+                    return {"cart_item": item.to_dict()}
 
-                db.session.commit()
-                return {"cart_item": item.to_dict()}
+            db.session.add(cart_item)
+            db.session.commit()
 
-        db.session.add(cart_item)
-        db.session.commit()
+            return {"cart_item": cart_item.to_dict()}
+        else:
+            return {"errors": form.errors}, 400
 
-        return {"cart_item": cart_item.to_dict()}
+    except Exception as e:  # General exception to catch all errors
+        print("Error:", str(e))
+        return {"error": "Internal server error"}, 500
+
