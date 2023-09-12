@@ -4,45 +4,42 @@ import { NavLink, useHistory } from "react-router-dom";
 import './AllProducts.css'
 import { fetchProducts } from "../../store/productsReducer";
 
-
-
 export const AllProducts = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector((state) => state.session.user);
-    const productsObj = useSelector((state) => (state.products ? state.products : {}))
+
+    // Access the allProducts from the state
+    const allProductsObj = useSelector((state) => (state.products.allProducts ? state.products.allProducts : {}));
 
     const [filter, setFilter] = useState("");
-
 
     useEffect(() => {
         dispatch(fetchProducts())
     }, [dispatch])
 
+    if (!allProductsObj) return null;
 
-    if (!productsObj) return null
+    // Convert the allProducts object to an array
+    const products = Object.values(allProductsObj);
 
-    const singleProdKey = "singleProduct"
-    delete productsObj[singleProdKey]
-    const products = Object.values(productsObj)
+    if (!products.length) return null;
 
-    if (!products.length) return null
-
-    return(
+    return (
         <div>
-        <h1>All Products</h1>
-        <div className="products-container">
-            {products.map(product => (
-                <div key={product.id} className="product-card">
-                    <img src={product.image} alt={product.name} />
-                    <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-                    <p>Price: ${product.price}</p>
-                    <p>Quantity: {product.quantity}</p>
-                </div>
-            ))}
+            <h1>All Products</h1>
+            <div className="products-container">
+                {products.map(product => (
+                    <div key={product.id} className="product-card">
+                        <img src={product.image} alt={product.name} />
+                        <h2>{product.name}</h2>
+                        <p>{product.description}</p>
+                        <p>Price: ${product.price}</p>
+                        <p>Quantity: {product.quantity}</p>
+                    </div>
+                ))}
+            </div>
         </div>
-    </div>
-
     )
 }
+
