@@ -4,7 +4,7 @@ const LOAD_SINGLE_PRODUCT = 'products/LOAD_SINGLE_PRODUCT';
 const CREATE_PRODUCT = 'products/ADD_PRODUCT';
 const UPDATE_PRODUCT = 'products/UPDATE_PRODUCT';
 const DELETE_PRODUCT = 'products/DELETE_PRODUCT';
-
+const CLEAR_SINGLE_PRODUCT = 'products/CLEAR_SINGLE_PRODUCT';
 
 //actions
 const loadProducts = (products) => ({
@@ -32,6 +32,10 @@ const deleteProduct = (productId) => ({
     productId
 });
 
+const clearSingleProductAction = () => ({
+    type: CLEAR_SINGLE_PRODUCT,
+});
+
 
 //thunks
 export const fetchProducts = () => async (dispatch) => {
@@ -46,8 +50,8 @@ export const fetchSingleProduct = (productId) => async (dispatch) => {
     const response = await fetch(`/api/products/${productId}`);
     if (response.ok) {
         const product = await response.json();
-        const products = {}
-        products.singleProduct = { ...product }
+        // const products = {}
+        // products.singleProduct = { ...product }
         dispatch(loadSingleProduct(product));
     }
 };
@@ -105,6 +109,14 @@ export const removeProduct = (productId) => async (dispatch) => {
     }
 };
 
+export const clearSingleProduct = () => async (dispatch) => {
+    try {
+        dispatch(clearSingleProductAction());
+    } catch (error) {
+        console.error('Error clearing singleProduct:', error);
+    }
+};
+
 
 //reducer
 const initialState = {};
@@ -115,22 +127,42 @@ export const productsReducer = (state = initialState, action) => {
             return { ...state, ...action.products };
         case LOAD_SINGLE_PRODUCT:
             return { ...state, singleProduct: action.product };
+        // case CREATE_PRODUCT: {
+        //     const newState = { ...state };
+        //     const productData = action.product.product;
+        //     const allProducts = {...state.allProducts, [productData.id]: productData }
+        //     newState.allProducts = allProducts
+        //     newState.singleProduct = { ...productData };
+        //     return newState;
+        // }
         case CREATE_PRODUCT: {
-            const newState = { ...state };
             const productData = action.product.product;
-            const allProducts = {...state.allProducts, [productData.id]: productData }
-            // const allProducts = {...state.allProducts, [action.product.id]: action.product }
-            newState.allProducts = allProducts
-            console.log("NEWSTATE.ALLPRODUCTS IN REDUCER", newState.allProducts)
-            console.log("action product in product reducer -------", action.product)
-            return newState;
+            return {
+                ...state,
+                allProducts: {
+                    ...state.allProducts,
+                    [productData.id]: productData
+                },
+                singleProduct: { ...productData }
+            };
         }
         case UPDATE_PRODUCT:
-            return { ...state, ...state.allProducts, [action.product.id]: action.product };
+            const updatedProducts = { ...state };
+            const updatedProduct = action.product;
+            if (updatedProducts[updatedProduct.id]) {
+                updatedProducts[updatedProduct.id] = updatedProduct;
+        }
+    return updatedProducts;
         case DELETE_PRODUCT:
             const newState = { ...state };
             delete newState[action.productId];
             return newState;
+        case CLEAR_SINGLE_PRODUCT:
+            if (state.singleProduct !== null) {
+                const { singleProduct, ...newState } = state;
+                return newState;
+            }
+            return state;
         default:
             return state;
     }

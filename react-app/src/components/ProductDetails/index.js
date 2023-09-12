@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useLocation } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
-import { fetchSingleProduct, fetchProducts, editProduct, removeProduct } from "../../store/productsReducer";
+import { useParams, useHistory, useLocation } from "react-router-dom";
+import { fetchSingleProduct, fetchProducts, editProduct, removeProduct, clearSingleProduct } from "../../store/productsReducer";
 import './ProductDetails.css';
 import prime from './prime-logo.png'
 
@@ -9,6 +9,7 @@ export const ProductDetails = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
     const products = useSelector((state) => state.products);
     const product = useSelector((state) =>
         state.products ? state.products.singleProduct : null
@@ -23,6 +24,13 @@ export const ProductDetails = () => {
     useEffect(() => {
         dispatch(fetchSingleProduct(productId));
     }, [dispatch, productId]);
+
+    useEffect(() => {
+        return () => {
+          dispatch(clearSingleProduct());
+        };
+    }, [dispatch]);
+
 
     const handleUpdateClick = () => {
         history.push({
