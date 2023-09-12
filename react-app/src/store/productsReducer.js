@@ -123,8 +123,15 @@ const initialState = {};
 
 export const productsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOAD_PRODUCTS:
-            return { ...state, ...action.products };
+        // case LOAD_PRODUCTS:
+        //     return { ...state, ...action.products };
+        case LOAD_PRODUCTS: {
+            const productsObj = {};
+            action.products.forEach(product => {
+                productsObj[product.id] = product;
+            });
+            return { ...state, allProducts: productsObj };
+        }
         case LOAD_SINGLE_PRODUCT:
             return { ...state, singleProduct: action.product };
         // case CREATE_PRODUCT: {

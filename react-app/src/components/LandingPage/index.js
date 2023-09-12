@@ -7,7 +7,9 @@ import { fetchProducts } from "../../store/productsReducer";
 export const LandingPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const productsObj = useSelector((state) => (state.products ? state.products : {}))
+    // const productsObj = useSelector((state) => (state.products ? state.products : {}))
+    const productsObj = useSelector((state) => (state.products.allProducts ? state.products.allProducts : {}));
+
 
     useEffect(() => {
         dispatch(fetchProducts());
@@ -31,7 +33,7 @@ export const LandingPage = () => {
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    
+
     const carouselImages = [
         "https://m.media-amazon.com/images/I/718m-LaIwaL._SX3000_.jpg",
         "https://m.media-amazon.com/images/I/7149SrIuXaL._SX3000_.jpg",
