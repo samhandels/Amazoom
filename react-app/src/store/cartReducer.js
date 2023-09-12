@@ -76,13 +76,15 @@ const initialState = { items: {}, total: 0 };
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CART:
+            const items = action.payload.cart_item.reduce((acc, item) => {
+                acc[item.id] = item;
+                return acc;
+            }, {});
+            const total = Object.values(items).reduce((sum, item) => sum + (item.price * item.quantity), 0);
             return {
                 ...state,
-                items: action.payload?.cart?.cart_item?.reduce((acc, item) => {
-                    acc[item.id] = item;
-                    return acc;
-                }, {}),
-                total: action.payload.cart.total_price
+                items: items,
+                total: total
             };
         case ADD_TO_CART:
             return {
