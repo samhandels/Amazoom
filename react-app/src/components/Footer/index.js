@@ -12,7 +12,7 @@ export const Footer = () => {
                 <i className="fa-brands fa-linkedin"></i>
                 </a>
                 <a href="https://github.com/samhandels" target="_blank" rel="noopener noreferrer">
-                    <img className='github-logo' src={null} alt="GitHub" />
+                    <i className='fa-brands fa-github' alt="GitHub"></i>
                 </a>
             </div>
 
