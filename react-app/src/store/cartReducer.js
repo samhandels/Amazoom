@@ -49,6 +49,7 @@ export const addToCart = (quantity, productId) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
+        console.log("DATA IN ADD TO CART THUNK ******", data)
         dispatch(addToCartAction(data));
         return data;
     }
@@ -79,19 +80,24 @@ export const updateCart = (quantity, productId) => async (dispatch) => {
 };
 
 export const thunkPlaceOrder = () => async (dispatch) => {
-    const response = await fetch(`/api/orders`, {
+    const response = await fetch(`/api/cart/checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     });
+
     if (response.ok) {
         const data = await response.json();
-        dispatch(placeOrderAction(data)); // Dispatch the action to update the state with the new order
+        dispatch(placeOrderAction());
+        dispatch(getCart());
+
         return { ok: true, data };
     } else {
         const errData = await response.json();
         return { ok: false, error: errData };
     }
 };
+
+
 
 // REDUCER
 const initialState = { };
@@ -100,7 +106,7 @@ export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CART:
             return {
-                ...state, ...action.payload
+                ...action.payload
             }
         case ADD_TO_CART:
             return {
@@ -116,7 +122,7 @@ export const cartReducer = (state = initialState, action) => {
             };
         case PLACE_ORDER:
             return {
-                ...state, ...action.payload
+
             };
         default:
             return state;

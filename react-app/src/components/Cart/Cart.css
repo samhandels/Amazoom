@@ -247,6 +247,11 @@
     flex: 1;
 }
 
+.lock-img {
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+}
+
 /* Styles for the order summary section */
 .checkout__right-summary h3 {
     font-size: 1.4rem;

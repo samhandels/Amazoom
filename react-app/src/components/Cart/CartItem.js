@@ -26,11 +26,9 @@ export const CartItem = ({ item }) => {
 
 
     let stockLength = item.quantity;
-    if (item.product.quantity > item.quantity) {
+    if (item.product?.quantity > item.quantity) {
         stockLength = item.product.quantity;
     }
-
-    console.log("item =================", item)
 
     if (!item) {
         return null

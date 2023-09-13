@@ -86,3 +86,20 @@ def update_cart_item(id):
         return response
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# CHECKOUT and clear the cart
+@cart_routes.route("/checkout", methods=["POST"])
+@login_required
+def checkout_cart():
+    # Clear the cart
+    cart = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.id).first()
+    if not cart:
+        return {"error": "No cart found for the user"}, 404
+
+    cart_items_to_delete = ShoppingCartItems.query.filter(ShoppingCartItems.shoppingCartId == cart.id).all()
+    for item in cart_items_to_delete:
+        db.session.delete(item)
+
+    db.session.commit()
+
+    return {"message": "Order placed successfully and cart cleared"}
