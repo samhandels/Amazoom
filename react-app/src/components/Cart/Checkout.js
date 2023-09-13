@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import { thunkPlaceOrder, getCart } from '../../store/cartReducer';
 import samazonLogo from './samazonblack.png';
 
@@ -49,8 +49,8 @@ export const Checkout = () => {
                                 {cart.items && Object.values(cart.items).map(item => (
                                     <div className='checkout__item' key={item.id}>
                                         <div className='checkout__item-header'>
-                                            <h4>Delivery: {dayjs().format('MMM D, YYYY')}</h4>
-                                            <p>Items shipped from Programazon</p>
+                                            {/* <h4>Delivery: {dayjs().format('MMM D, YYYY')}</h4> */}
+                                            <p>Items shipped from Samazon</p>
                                         </div>
                                         <div className='checkout__item-content'>
                                             <div className='checkout__item-left'>
@@ -61,7 +61,7 @@ export const Checkout = () => {
                                                 <p className='checkout__item-price'><span>${item.product.price}</span> Prime FREE Delivery</p>
                                                 <p>& FREE Returns</p>
                                                 <p className='checkout__item-quantity'>Quantity: <span>{item.quantity}</span></p>
-                                                <span className='checkout__item-sold'>Sold by: Programazon</span>
+                                                <span className='checkout__item-sold'>Sold by: Samazon</span>
                                             </div>
                                             <div></div>
                                         </div>
@@ -73,7 +73,7 @@ export const Checkout = () => {
                     <div className='checkout__right'>
                         <div className='checkout__right-header'>
                             <button className='cart__checkout' onClick={placeOrder}>Place your order</button>
-                            <p>By placing your order, you agree to Programazon's conditions and understand this is a totally fake cart.</p>
+                            <p>By placing your order, you agree to Samazon's conditions and understand this is a totally fake cart.</p>
                         </div>
                         <div className='checkout__right-summary'>
                             <h3>Order Summary</h3>
