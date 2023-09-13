@@ -23,6 +23,16 @@ function LoginFormModal() {
     }
   };
 
+  const demoSignIn = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal()
+    }
+  };
+
   return (
     <div className="login-modal">
 			<img className='samazon-logo-login' src={samazonLogo} alt="Samazon Logo" />
@@ -52,6 +62,7 @@ function LoginFormModal() {
           />
         </label>
         <button className="login-button grow" type="submit">Sign in</button>
+        <div id='demo-link' className="grow" onClick={demoSignIn}>Demo User</div>
 				<div className="terms-and-conditions">By creating an account, you agree to Samazon's <br /> Conditions of Use and Privacy Notice.</div>
       </form>
     </div>

@@ -62,3 +62,9 @@
     color: red;
     margin-bottom: 10px;
 }
+
+#demo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

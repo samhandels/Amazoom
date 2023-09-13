@@ -38,8 +38,8 @@ export const Checkout = () => {
                         <div className='checkout__address'>
                             <h3>Shipping Address</h3>
                             <div className='checkout__address-content'>
-                                <p>{user.username}</p>
-                                <p>{user.address}</p>
+                                <p>{user?.username}</p>
+                                <p>{user?.address}</p>
                                 <span>Not available for pickup</span>
                             </div>
                         </div>
