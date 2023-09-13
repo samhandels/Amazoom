@@ -58,7 +58,6 @@ export const fetchSingleProduct = (productId) => async (dispatch) => {
 
 export const fetchcreateProduct = (productData) => async (dispatch) => {
     try {
-        console.log("PRODUCTDATA IN Thunk CREATE PRODUCT", productData)
 
         const formData = new FormData();
 
@@ -79,7 +78,6 @@ export const fetchcreateProduct = (productData) => async (dispatch) => {
             return product
         } else {
             const errors = await response.json();
-            console.log("ERRORS", errors);
             return errors;
         }
     } catch (error) {

@@ -15,9 +15,9 @@ export const addToCartAction = (cartItem) => ({
     payload: cartItem
 });
 
-export const removeFromCartAction = (itemId) => ({
+export const removeFromCartAction = (data) => ({
     type: REMOVE_FROM_CART,
-    payload: itemId
+    payload: data
 });
 
 export const updateCartAction = (cartItem) => ({
@@ -30,7 +30,6 @@ export const getCart = () => async (dispatch) => {
     const response = await fetch('/api/cart');
     if (response.ok) {
         const data = await response.json();
-        console.log("data in getCart Thunk *****************", data)
         dispatch(getCartAction(data));
         return data;
     }
@@ -54,7 +53,9 @@ export const removeFromCart = (productId) => async (dispatch) => {
         method: 'DELETE'
     });
     if (response.ok) {
-        dispatch(removeFromCartAction(productId));
+        const data = await response.json();
+        dispatch(removeFromCartAction(data));
+        return data;
     }
 };
 
@@ -66,13 +67,13 @@ export const updateCart = (quantity, productId) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(updateCartAction(data));
+        dispatch(getCartAction(data));
         return data;
     }
 };
 
 // REDUCER
-const initialState = { items: {}, total: 0 };
+const initialState = { };
 
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -82,25 +83,25 @@ export const cartReducer = (state = initialState, action) => {
             }
         case ADD_TO_CART:
             return {
-                ...state,
-                items: {
-                    ...state.items,
-                    [action.payload.cart_item.id]: action.payload.cart_item
-                },
-                total: state.total + action.payload.cart_item.subtotal
+                ...state, ...action.payload
+                // items: {
+                //     ...state.items,
+                //     [action.payload.cart_item.id]: action.payload.cart_item
+                // },
+                // total: state.total + action.payload.cart_item.subtotal
             };
         case REMOVE_FROM_CART:
-            const newState = { ...state };
-            delete newState.items[action.payload];
-            return newState;
+            return {
+                ...action.payload
+            }
         case UPDATE_CART:
             return {
-                ...state,
-                items: {
-                    ...state.items,
-                    [action.payload.cart_item.id]: action.payload.cart_item
-                },
-                total: state.total + action.payload.cart_item.subtotal
+                ...state, ...action.payload
+                // items: {
+                //     ...state.items,
+                //     [action.payload.cart_item.id]: action.payload.cart_item
+                // },
+                // total: state.total + action.payload.cart_item.subtotal
             };
         default:
             return state;

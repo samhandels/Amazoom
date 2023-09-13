@@ -16,12 +16,10 @@ def get_my_cart():
     userId = current_user.id
     cart = ShoppingCart.query.filter(ShoppingCart.user_id == userId).first()
     cartItems = ShoppingCartItems.query.filter(ShoppingCartItems.shoppingCartId == userId)
-    print("cartItems in get cart route ***********", (cartItems))
     if not cartItems:
         error = NotFoundError('No Cart Found, add items to cart!')
         return error.error_json()
     response = [item.to_dict() for item in cartItems]
-    print("response in get cart route ********************", response)
     return response
     # return {'cart': cartItems}
 
@@ -36,25 +34,32 @@ def remove_from_cart(id):
         return error.error_json()
 
     cart = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.id).first()
-    cart_item_to_delete = ShoppingCartItems.query.filter(ShoppingCartItems.cart_id == cart.id, ShoppingCartItems.product_id == id).first()
+    cart_item_to_delete = ShoppingCartItems.query.filter(ShoppingCartItems.shoppingCartId == cart.id, ShoppingCartItems.productId == id).first()
 
     if not cart_item_to_delete:
         error = NotFoundError('Item not in cart')
         return error.error_json()
 
     # update cart total price and product stock quantity
-    cart.total_price -= cart_item_to_delete.subtotal
-    product_to_delete.stock_quantity += cart_item_to_delete.quantity
+    product_to_delete.quantity += cart_item_to_delete.quantity
 
     db.session.delete(cart_item_to_delete)
     db.session.commit()
 
-    # delete empty carts
-    if len(cart.cart_items) == 0:
-        db.session.delete(cart)
-        db.session.commit()
+    userId = current_user.id
+    cartItems = ShoppingCartItems.query.filter(ShoppingCartItems.shoppingCartId == userId)
+    if not cartItems:
+        error = NotFoundError('No Cart Found, add items to cart!')
+        return error.error_json()
+    response = [item.to_dict() for item in cartItems]
+    return response
 
-    return {"message": "Item removed from cart!"}
+    # delete empty carts
+    # if len(cart.cart_items) == 0:
+        # db.session.delete(cart)
+        # db.session.commit()
+
+    # return {"message": "Item removed from cart!"}
 
 # UPDATE item quantity in cart
 @cart_routes.route("/<int:id>", methods=["PUT"])
@@ -66,30 +71,32 @@ def update_cart_item(id):
         error = NotFoundError('Product Not Found')
         return error.error_json()
 
-    cart = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.id).first()
-    cart_item_to_update = ShoppingCartItems.query.filter(ShoppingCartItems.cart_id == cart.id, ShoppingCartItems.product_id == id).first()
-
-    old_subtotal = cart_item_to_update.subtotal
-    old_quantity = cart_item_to_update.quantity
+    # cart = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.id)
+    cart_item_to_update = ShoppingCartItems.query.filter(ShoppingCartItems.id == id)
+    print("Cart Item to update in update route *******************************", cart_item_to_update)
 
     if not cart_item_to_update:
         error = NotFoundError('Item not in cart')
         return error.error_json()
-
+    res = [item.to_dict() for item in cart_item_to_update]
+    print("res[0] in update shopping cart route ****************", res[0])
     form = CartItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        cart_item_to_update.quantity = form.data["quantity"]
-        cart_item_to_update.subtotal = product.price * form.data["quantity"]
+        print("cart_item_to_update -----", cart_item_to_update)
+        print("res[0][quantity] ************", res[0]["quantity"])
+        res[0]["quantity"] = form.data["quantity"]
 
-        cart.total_price -= old_subtotal
-        cart.total_price += cart_item_to_update.subtotal
-
-        product.stock_quantity += old_quantity
-        product.stock_quantity -= cart_item_to_update.quantity
+        print("FORM.Data.quantity ***********", form.data["quantity"])
 
         db.session.commit()
 
-        return {"cart_item": cart_item_to_update.to_dict()}
+        userId = current_user.id
+        cartItems = ShoppingCartItems.query.filter(ShoppingCartItems.shoppingCartId == userId)
+        if not cartItems:
+            error = NotFoundError('No Cart Found, add items to cart!')
+            return error.error_json()
+        response = [item.to_dict() for item in cartItems]
+        return response
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
