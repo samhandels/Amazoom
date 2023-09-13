@@ -3,6 +3,7 @@ const GET_CART = 'cart/GET_CART';
 const ADD_TO_CART = 'cart/ADD_TO_CART';
 const REMOVE_FROM_CART = 'cart/REMOVE_FROM_CART';
 const UPDATE_CART = 'cart/UPDATE_CART';
+const PLACE_ORDER = 'cart/PLACE_ORDER';
 
 // ACTIONS
 export const getCartAction = (cart) => ({
@@ -23,6 +24,11 @@ export const removeFromCartAction = (data) => ({
 export const updateCartAction = (cartItem) => ({
     type: UPDATE_CART,
     payload: cartItem
+});
+
+export const placeOrderAction = (order) => ({
+    type: PLACE_ORDER,
+    payload: order
 });
 
 // THUNKS
@@ -72,6 +78,21 @@ export const updateCart = (quantity, productId) => async (dispatch) => {
     }
 };
 
+export const thunkPlaceOrder = () => async (dispatch) => {
+    const response = await fetch(`/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(placeOrderAction(data)); // Dispatch the action to update the state with the new order
+        return { ok: true, data };
+    } else {
+        const errData = await response.json();
+        return { ok: false, error: errData };
+    }
+};
+
 // REDUCER
 const initialState = { };
 
@@ -84,11 +105,6 @@ export const cartReducer = (state = initialState, action) => {
         case ADD_TO_CART:
             return {
                 ...state, ...action.payload
-                // items: {
-                //     ...state.items,
-                //     [action.payload.cart_item.id]: action.payload.cart_item
-                // },
-                // total: state.total + action.payload.cart_item.subtotal
             };
         case REMOVE_FROM_CART:
             return {
@@ -97,11 +113,10 @@ export const cartReducer = (state = initialState, action) => {
         case UPDATE_CART:
             return {
                 ...state, ...action.payload
-                // items: {
-                //     ...state.items,
-                //     [action.payload.cart_item.id]: action.payload.cart_item
-                // },
-                // total: state.total + action.payload.cart_item.subtotal
+            };
+        case PLACE_ORDER:
+            return {
+                ...state, ...action.payload
             };
         default:
             return state;

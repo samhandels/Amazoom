@@ -38,7 +38,6 @@ export const Cart = () => {
                         </div>
                     </div>
                     <div className='cart__right'>
-                        <p className='total'>Subtotal ({cartItems.length} items): <span>${cart.total}</span></p>
                         <button className='cart__checkout' onClick={sendToCheckout}>Proceed to checkout</button>
                     </div>
                 </div>

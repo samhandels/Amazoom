@@ -12,6 +12,7 @@ import { Footer } from "./components/Footer"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { ProductForm } from "./components/ProductForm";
 import { Cart } from "./components/Cart";
+import { Checkout } from "./components/Cart/Checkout.js";
 
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/cart">
             <Cart />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
         </Switch>
       )}
