@@ -10,6 +10,8 @@ export const Cart = () => {
     const history = useHistory();
     const cart = useSelector(state => state.cart);
     const cartItems = cart ? Object.values(cart) : [];
+    const cartTotal = cartItems.reduce((acc, item) => acc + (item.quantity * item.product.price), 0);
+
 
     useEffect(() => {
         dispatch(getCart());
@@ -34,7 +36,7 @@ export const Cart = () => {
                             ))}
                         </div>
                         <div className='cart__total'>
-                            <p className='total'>Subtotal ({cartItems.length} items): <span>${cart.total}</span></p>
+                            <p className='total'>Subtotal ({cartItems.length} items): <span>${cartTotal.toFixed(2)}</span></p>
                         </div>
                     </div>
                     <div className='cart__right'>

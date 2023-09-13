@@ -10,6 +10,8 @@ export const Checkout = () => {
     const user = useSelector(state => state.session.user);
     const cart = useSelector(state => state.cart);
     const cartItems = cart ? Object.values(cart) : [];
+    const cartTotal = cartItems.reduce((acc, item) => acc + (item.quantity * item.product.price), 0);
+
 
     useEffect(() => {
         dispatch(getCart());
@@ -93,11 +95,11 @@ export const Checkout = () => {
                                     <span>Order Total:</span>
                                 </div>
                                 <div className='checkout__right-summary-right'>
-                                    <p>${cart.total}</p>
+                                    <p>${cartTotal.toFixed(2)}</p>
                                     <p className='checkout__right-summary-right-border space'>$5.00</p>
-                                    <p>${(parseFloat(cart.total) + 5).toFixed(2)}</p>
-                                    <p>${(parseFloat(cart.total) * 0.029).toFixed(2)}</p>
-                                    <span>${(parseFloat(cart.total) + 5 + (parseFloat(cart.total) * 0.029)).toFixed(2)}</span>
+                                    <p>${(parseFloat(cartTotal) + 5).toFixed(2)}</p>
+                                    <p>${(parseFloat(cartTotal) * 0.029).toFixed(2)}</p>
+                                    <span>${(parseFloat(cartTotal) + 5 + (parseFloat(cartTotal) * 0.029)).toFixed(2)}</span>
                                 </div>
                             </div>
                         </div>

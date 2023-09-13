@@ -17,9 +17,9 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const emailPattern = /^.+@.+$/; // Simple regex for email validation
+		const emailPattern = /^.+@.+$/;  //pattern="^\S+@\S+\.\S+$" also for the .
 
-		// Reset errors
+
 		setErrors([]);
 
 		// Check for email validation
