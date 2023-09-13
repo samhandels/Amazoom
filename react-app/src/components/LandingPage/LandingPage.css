@@ -12,7 +12,7 @@
 
 .landing_banner > img {
     width: 100%;
-    padding: 3px 5px;
+
 }
 
 .landing__categories {
@@ -52,6 +52,10 @@
 .landing__trending-container {
     margin-bottom: 50px;
     margin-top: 200px;
+}
+
+.landing-carousel {
+    padding: 0, 0, 0, 0;
 }
 
 .landing__trending {

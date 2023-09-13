@@ -38,6 +38,8 @@ export const LandingPage = () => {
         "https://m.media-amazon.com/images/I/718m-LaIwaL._SX3000_.jpg",
         "https://m.media-amazon.com/images/I/7149SrIuXaL._SX3000_.jpg",
         "https://m.media-amazon.com/images/I/61E7T9rAKlL._SX3000_.jpg",
+        "https://m.media-amazon.com/images/I/71+OQR1z9sL._SX3000_.jpg",
+        "https://m.media-amazon.com/images/I/61ThNzdzDbL._SX3000_.jpg",
     ];
 
     const nextImage = () => {
@@ -52,7 +54,7 @@ export const LandingPage = () => {
     return (
         <div className="landing__container">
             <div className="landing_banner">
-            <img src={carouselImages[currentImageIndex]} alt="landing" />
+            <img className="landing-carousel" src={carouselImages[currentImageIndex]} alt="landing" />
                 <div className="landing__categories">
                     <div className="landing__category">
                         <h3>Electronics Center</h3>
