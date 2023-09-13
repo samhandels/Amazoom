@@ -54,12 +54,8 @@ def remove_from_cart(id):
     response = [item.to_dict() for item in cartItems]
     return response
 
-    # delete empty carts
-    # if len(cart.cart_items) == 0:
-        # db.session.delete(cart)
-        # db.session.commit()
-
     # return {"message": "Item removed from cart!"}
+
 
 # UPDATE item quantity in cart
 @cart_routes.route("/<int:id>", methods=["PUT"])
@@ -67,28 +63,18 @@ def remove_from_cart(id):
 def update_cart_item(id):
     product = Product.query.get(id)
 
-    if not product:
-        error = NotFoundError('Product Not Found')
-        return error.error_json()
+    # if not product:
+    #     error = NotFoundError('Product Not Found')
+    #     return error.error_json()
 
     # cart = ShoppingCart.query.filter(ShoppingCart.user_id == current_user.id)
-    cart_item_to_update = ShoppingCartItems.query.filter(ShoppingCartItems.id == id)
-    print("Cart Item to update in update route *******************************", cart_item_to_update)
+    cart_item_to_update = ShoppingCartItems.query.get(id)
 
-    if not cart_item_to_update:
-        error = NotFoundError('Item not in cart')
-        return error.error_json()
-    res = [item.to_dict() for item in cart_item_to_update]
-    print("res[0] in update shopping cart route ****************", res[0])
     form = CartItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("cart_item_to_update -----", cart_item_to_update)
-        print("res[0][quantity] ************", res[0]["quantity"])
-        res[0]["quantity"] = form.data["quantity"]
 
-        print("FORM.Data.quantity ***********", form.data["quantity"])
-
+        cart_item_to_update.quantity = form.data["quantity"]
         db.session.commit()
 
         userId = current_user.id
