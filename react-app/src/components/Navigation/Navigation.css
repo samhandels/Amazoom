@@ -10,6 +10,11 @@
   max-width: 10rem;
 }
 
+.USA-Flag {
+  max-width: 1.5rem;
+  margin-right: .3rem;
+}
+
 .main-nav-bar {
   display: flex;
   align-items: center;
@@ -47,6 +52,10 @@
   border: none;
   outline: none;
   border-radius: 5px;
+}
+
+.language {
+  margin-left: 1rem;
 }
 
 .shoppingcart {

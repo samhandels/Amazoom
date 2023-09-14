@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import samazonLogo from './samazonwhite.png';
 import shoppingcart from './shopping-cart-white.png';
+import USAFlag from './USA-Flag.png';
 
 
 function Navigation({ isLoaded }) {
@@ -27,8 +28,9 @@ function Navigation({ isLoaded }) {
         <i className="fa-solid fa-magnifying-glass" style={{color: "#343433",}} onClick={null}></i>
       </div>
       <ul>
-        <li>
-          Language: EN
+        <li className='language'>
+          <img className='USA-Flag' src={USAFlag} />
+          EN
         </li>
         {isLoaded && (
           <li>
