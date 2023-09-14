@@ -63,8 +63,11 @@ const handleSubmit = async (e) => {
 			<img className='samazon-logo-signup' src={samazonLogo} alt="Samazon Logo" />
       <span>Create a Product</span>
     <div className="product-form-container">
-      <form onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
+      <form className='form-container' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
+
+      <div className='name-description-inputs'>
         <div className="form-line">
+          <div className="input-wrapper">
           <label>Product Name*</label>
           <input
             type="text"
@@ -75,9 +78,11 @@ const handleSubmit = async (e) => {
             required
           />
           {errors.name && <p className="form-errors">{errors.name}</p>}
+          </div>
         </div>
 
         <div className="form-line">
+        <div className="input-wrapper">
           <label>Retail Price*</label>
           <div className="product-form__price">
             <span>$</span>
@@ -89,11 +94,13 @@ const handleSubmit = async (e) => {
               step="0.01"
               required
             />
-          </div>
+            </div>
           {errors.price && <p className="form-errors">{errors.price}</p>}
+          </div>
         </div>
 
         <div className="form-line">
+        <div className="input-wrapper">
           <label>Category*</label>
           <select
             name="category"
@@ -112,9 +119,11 @@ const handleSubmit = async (e) => {
             <option value="Other">Other</option>
           </select>
           {errors.category && <p className="form-errors">{errors.category}</p>}
+          </div>
         </div>
 
         <div className="form-line">
+        <div className="input-wrapper">
           <label>Quantity*</label>
           <input
             type="number"
@@ -125,9 +134,11 @@ const handleSubmit = async (e) => {
             required
           />
           {errors.quantity && <p className="form-errors">{errors.quantity}</p>}
+          </div>
         </div>
 
         <div className="form-line">
+        <div className="input-wrapper">
           <label>Product Description*</label>
           <textarea
             name="description"
@@ -140,7 +151,10 @@ const handleSubmit = async (e) => {
             <p className="form-errors">{errors.description}</p>
           )}
         </div>
+        </div>
+        </div>
 
+      <div className='image-list-product'>
         <div className="form-line">
             <label>Image*</label>
             {!image ? (
@@ -163,6 +177,7 @@ const handleSubmit = async (e) => {
         </div>
         <div className="form-submit">
             <button type="submit">{productToUpdate ? "Update Product" : "List Product"}</button>
+        </div>
         </div>
       </form>
     </div>

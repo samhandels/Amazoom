@@ -1,6 +1,6 @@
-.profile-dropdown {
+/* .profile-dropdown {
   position: absolute;
-}
+} */
 
 .hidden {
   display: none;
@@ -167,7 +167,6 @@ li {
   right: 50px;
   z-index: 1;
   border-radius: 10px;
-  border: 1px solid rgb(222, 222, 222);
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
               rgba(17, 17, 26, 0.1) 0px 8px 24px,
               rgba(17, 17, 26, 0.1) 0px 16px 56px;

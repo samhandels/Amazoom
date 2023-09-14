@@ -165,3 +165,36 @@
 .form__file-pic > img {
     max-width: 200px;
 }
+
+.image-list-product {
+    margin-left: 10px;
+    border-left:black 1px solid;
+    padding-left: 20px;
+}
+
+.name-description-inputs {
+    margin-right: 10px;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-wrapper > label{
+    margin-right: 40px;
+}
