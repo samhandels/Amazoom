@@ -51,7 +51,7 @@
 
 .landing__trending-container {
     margin-bottom: 50px;
-    margin-top: 200px;
+    margin-top: 250px;
 }
 
 .landing-carousel {
@@ -61,7 +61,7 @@
 .landing__trending {
     padding: 8px 0;
     margin-bottom: 45px;
-    max-width: 1210px;
+    max-width: 1110px;
     width: 100%;
     background-color: white;
     padding: 0 20px;

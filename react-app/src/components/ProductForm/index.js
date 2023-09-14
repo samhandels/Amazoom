@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { fetchcreateProduct, editProduct } from '../../store/productsReducer';
 import './ProductForm.css';
+import samazonLogo from './samazonblack.png';
+
 
 export const ProductForm = ({ product, formType }) => {
   const dispatch = useDispatch();
@@ -56,6 +58,10 @@ const handleSubmit = async (e) => {
   };
 
   return (
+    <div className="product-form-header">
+      <div className='samazon-img-title'>
+			<img className='samazon-logo-signup' src={samazonLogo} alt="Samazon Logo" />
+      <span>Create a Product</span>
     <div className="product-form-container">
       <form onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
         <div className="form-line">
@@ -159,6 +165,8 @@ const handleSubmit = async (e) => {
             <button type="submit">{productToUpdate ? "Update Product" : "List Product"}</button>
         </div>
       </form>
+    </div>
+    </div>
     </div>
   );
 };
