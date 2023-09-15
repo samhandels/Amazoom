@@ -56,6 +56,9 @@
 
 .language {
   margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
 }
 
 .shoppingcart {
@@ -73,7 +76,7 @@
   cursor: pointer;
 }
 
-ul {
+.nav-ul {
   display: flex;
   list-style: none;
   gap: 20px;
@@ -81,7 +84,7 @@ ul {
   padding: 0;
 }
 
-li {
+.nav-li {
   display: flex;
   align-items: center;
   font-size: 14px;

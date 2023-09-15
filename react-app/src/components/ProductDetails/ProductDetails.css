@@ -7,7 +7,7 @@
 
 .product-details-display-container {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 1.5fr .8fr;
     gap: 1.2rem;
     max-width: 1500px;
     padding: 20px;
@@ -45,6 +45,10 @@
     font-size: 28px;
 }
 
+.product-details-price-addtocart {
+    font-size: 28px;
+}
+
 .product-details-returns {
     font-size: 14px;
     color: #007185;
@@ -71,4 +75,51 @@
 .prime-logo {
     max-width: 4rem;
     margin-bottom: .6rem;
+}
+
+.product-samazon-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px 0;
+    grid-gap: 10px;
+    gap: 8px;
+}
+
+.product-addtocart-left {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 5px;
+    gap: 5px;
+    font-size: 13px;
+    color: gray;
+}
+
+.product-addtocart-right {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 5px;
+    gap: 5px;
+    font-size: 13px;
+}
+
+.stock {
+    font-size: 24px;
+    color: #007600;
+}
+
+.stock-quantity {
+    color: #B53415;
+}
+
+.add-to-cart {
+    width: 95%;
+    align-self: center;
+    border-radius: 15px;
+    border: none;
+    height: 28px;
+    background-color: #ffd814;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 4px;
 }

@@ -18,6 +18,11 @@ export const ProductDetails = () => {
     const currentUser = useSelector(state => state.session.user);
     const [quantity, setQuantity] = useState(1);
 
+    const futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + 7);
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    const formattedDate = futureDate.toLocaleDateString('en-US', options);
+
 
     useEffect(() => {
         dispatch(fetchProducts());
@@ -75,8 +80,8 @@ export const ProductDetails = () => {
                 <div className="product-details-display-info">
                     <span className="product-details-name">{product?.name}</span>
                     <div className="product-details-price">
-                        <p>$</p>
-                        <span>{product?.price}</span>
+
+                        <span>${product?.price}</span>
                     </div>
                     <img src={prime} alt="prime" className="prime-logo" />
                     <div className="product-details-returns">FREE Returns</div>
@@ -94,9 +99,33 @@ export const ProductDetails = () => {
                             <button onClick={handleDeleteClick}>Delete Product</button>
                         </div>
                     )}
-                <div>
-                    <button onClick={addToCartHandler}>Add to Cart</button>
                 </div>
+                <div className="add-to-cart-section">
+                <div className="product-details-price">
+                    <h2>Buy new:</h2>
+                    </div>
+                    <span className="product-details-price-addtocart">${product?.price}</span>
+                    <br />
+                    <img src={prime} alt="prime" className="prime-logo" />
+                    <div className="product-details-returns">FREE Returns</div>
+                    <br />
+                    <div className="free-delivery">FREE delivery by <strong>{formattedDate}.</strong></div>
+                    <div className="product-details-returns">Deliver to {currentUser.username} - {currentUser.address}</div>
+                    <div className="stock">In Stock</div>
+                    <div className="stock-quantity">Only {product?.quantity} left in stock.</div>
+                    <button className="add-to-cart" onClick={addToCartHandler}>Add to Cart</button>
+                    <div className="product-samazon-info">
+                        <div className="product-addtocart-left">
+                            <span>Payment</span>
+                            <span>Ships from</span>
+                            <span>Sold by</span>
+                        </div>
+                        <div className="product-addtocart-right">
+                            <span>Secure transaction</span>
+                            <span>Samazon</span>
+                            <span>Samazon</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

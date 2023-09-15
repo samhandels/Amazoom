@@ -27,23 +27,23 @@ function Navigation({ isLoaded }) {
         />
         <i className="fa-solid fa-magnifying-glass" style={{color: "#343433",}} onClick={null}></i>
       </div>
-      <ul>
+      <ul className='nav-ul'>
         <li className='language'>
           <img className='USA-Flag' src={USAFlag} />
           EN
         </li>
         {isLoaded && (
-          <li>
+          <li className='nav-li'>
             <ProfileButton className="nav-link profile-button" user={sessionUser} />
           </li>
         )}
-        <li>
+        <li className='nav-li'>
           <div className="returns-orders">
             <div className="returns">Returns <br/> & Orders</div>
 
           </div>
         </li>
-        <li>
+        <li className='nav-li'>
           <NavLink exact to="/cart">
             <div className="cart">
               <img className='shoppingcart' src={shoppingcart}></img>
