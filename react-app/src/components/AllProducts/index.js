@@ -9,7 +9,6 @@ export const AllProducts = () => {
     const history = useHistory()
     const user = useSelector((state) => state.session.user);
 
-    // Access the allProducts from the state
     const allProductsObj = useSelector((state) => (state.products.allProducts ? state.products.allProducts : {}));
 
     const [filter, setFilter] = useState("");
@@ -20,21 +19,21 @@ export const AllProducts = () => {
 
     if (!allProductsObj) return null;
 
-    // Convert the allProducts object to an array
     const products = Object.values(allProductsObj);
 
     if (!products.length) return null;
 
     return (
         <div>
-            <h1>All Products</h1>
+            <h1 className="all-products">All Products</h1>
             <div className="products-container">
                 {products.map(product => (
-                    <div key={product.id} className="product-card">
+                    <div key={product.id} className="product-card" onClick={() => history.push(`/products/${product.id}`)}>
                         <img src={product.image} alt={product.name} />
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>
                         <p>Price: ${product.price}</p>
+                        <p>Category: {product.category}</p>
                         <p>Quantity: {product.quantity}</p>
                     </div>
                 ))}
@@ -42,4 +41,3 @@ export const AllProducts = () => {
         </div>
     )
 }
-
