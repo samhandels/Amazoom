@@ -6,7 +6,6 @@
 }
 
 
-/* General Styles */
 .cart__container {
     background-color: #E3E6E6;
     min-height: 100vh;
@@ -99,7 +98,6 @@
     text-decoration: underline;
 }
 
-/* Cart Item Styles */
 .cart__item {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -167,16 +165,12 @@
     text-decoration: underline;
 }
 
-
-/* Enhancements for Checkout */
-
-/* General styles for the checkout container */
 .checkout__container {
     padding: 2rem;
     background-color: #E3E6E6;
 }
 
-/* Styles for the checkout header */
+
 .checkout__header {
     display: flex;
     align-items: center;
@@ -196,7 +190,6 @@
     font-size: 1.5rem;
 }
 
-/* Styles for the checkout content */
 .checkout__content-container {
     margin-top: 2rem;
     background-color: #fff;
@@ -214,7 +207,6 @@
     padding: 1rem;
 }
 
-/* Styles for the shipping address section */
 .checkout__address h3 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
@@ -224,7 +216,6 @@
     margin-bottom: 0.5rem;
 }
 
-/* Styles for the items review section */
 .checkout__items h3 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
@@ -240,7 +231,7 @@
 .checkout__item-left img {
     width: 100px;
     height: 100px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .checkout__item-right {
@@ -252,7 +243,6 @@
     max-height: 1.5rem;
 }
 
-/* Styles for the order summary section */
 .checkout__right-summary h3 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
@@ -270,14 +260,14 @@
     gap: 0.5rem;
 }
 
-/* Button styles */
+
 .cart__checkout {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
-/* Responsive styles */
+
 @media (max-width: 768px) {
     .checkout__content {
         flex-direction: column;
