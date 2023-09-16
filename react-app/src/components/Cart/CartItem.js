@@ -20,7 +20,6 @@ export const CartItem = ({ item }) => {
     };
 
     const removeFromCartHandler = (productId) => {
-        console.log("productId inside removefromCarthandler --------------------", productId)
         dispatch(removeFromCart(productId));
     };
 

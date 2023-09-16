@@ -101,16 +101,14 @@ export const ProductDetails = () => {
                     )}
                 </div>
                 <div className="add-to-cart-section">
-                <div className="product-details-price">
+                <div className="buy-new">
                     <h2>Buy new:</h2>
                     </div>
                     <span className="product-details-price-addtocart">${product?.price}</span>
-                    <br />
                     <img src={prime} alt="prime" className="prime-logo" />
                     <div className="product-details-returns">FREE Returns</div>
-                    <br />
                     <div className="free-delivery">FREE delivery by <strong>{formattedDate}.</strong></div>
-                    <div className="product-details-returns">Deliver to {currentUser.username} - {currentUser.address}</div>
+                    <div className="deliver-to">Deliver to {currentUser?.username} - {currentUser?.address}</div>
                     <div className="stock">In Stock</div>
                     <div className="stock-quantity">Only {product?.quantity} left in stock.</div>
                     <button className="add-to-cart" onClick={addToCartHandler}>Add to Cart</button>
@@ -121,7 +119,7 @@ export const ProductDetails = () => {
                             <span>Sold by</span>
                         </div>
                         <div className="product-addtocart-right">
-                            <span>Secure transaction</span>
+                            <span className="secure-transaction">Secure transaction</span>
                             <span>Samazon</span>
                             <span>Samazon</span>
                         </div>

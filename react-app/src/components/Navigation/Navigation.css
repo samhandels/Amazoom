@@ -166,6 +166,7 @@
   background-color: white;
   padding-right: 20px;
   padding-left: 20px;
+  list-style-type: none;
   top: 40px;
   right: 50px;
   z-index: 1;
@@ -173,4 +174,19 @@
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
               rgba(17, 17, 26, 0.1) 0px 8px 24px,
               rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.cart-items-num {
+  text-decoration: none;
+  font-size: 20px;
+  color: #f08804;
+  position: absolute;
+  right: 31px;
+  top: 19px;
+}
+
+@media (max-width: 740px){
+  .cart-items-num {
+    top:35px;
+  }
 }
