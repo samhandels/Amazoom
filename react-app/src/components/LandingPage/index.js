@@ -51,6 +51,10 @@ export const LandingPage = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const handleCategoryClick = (searchTerm) => {
+        history.push(`products/search/${searchTerm}`);
+    }
+
     return (
         <div className="landing__container">
             <div className="landing_banner">
@@ -59,22 +63,22 @@ export const LandingPage = () => {
                     <div className="landing__category">
                         <h3>Electronics Center</h3>
                         <img src="https://m.media-amazon.com/images/G/01/US-hq/2023/img/Consumer_Electronics/XCM_CUTTLE_1600596_3247825_512x512_2X_en_US._CB601492729_.png" alt="electronics" />
-                        <span onClick={null}>Shop electronics</span>
+                        <span onClick={() => handleCategoryClick("electronics")}>Shop Electronics</span>
                     </div>
                     <div className="landing__category">
                         <h3>Reading and Education</h3>
                         <img src="https://images-na.ssl-images-amazon.com/images/G/01/Books/Editorial/BOTYSF_BHP_Tile.jpg" alt="books" />
-                        <span onClick={null}>Shop Books</span>
+                        <span onClick={() => handleCategoryClick("Books")}>Shop Books</span>
                     </div>
                     <div className="landing__category">
                         <h3>Sports and Athletics</h3>
                         <img src="https://images-na.ssl-images-amazon.com/images/G/01/sports/marinpow/AMZSO_Web_Block_500x350_Faves_01.png" alt="sports" />
-                        <span onClick={null}>Shop Outdoors/Sports</span>
+                        <span onClick={() => handleCategoryClick("Sports & Outdoors")}>Shop Outdoors/Sports</span>
                     </div>
                     <div className="landing__category">
                         <h3>Other Products</h3>
                         <img src="https://images-na.ssl-images-amazon.com/images/G/01/US-hq/2022/img/Consumables/Everyday_Essentials/AMZQ3EE_Cross-1-StorefrontHero-D-1500x300-EN.jpg" alt="other" />
-                        <span onClick={null}>Shop Other</span>
+                        <span onClick={() => handleCategoryClick("other")}>Shop Other</span>
                     </div>
                 </div>
             </div>
