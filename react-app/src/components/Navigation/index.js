@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import samazonLogo from './samazonwhite.png';
@@ -15,6 +15,25 @@ function Navigation({ isLoaded }) {
   const cart = useSelector(state => state.cart);
   const cartItems = cart ? Object.values(cart) : [];
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const history = useHistory();
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearch = () => {
+    if (searchInput) {
+      history.push(`/products/search/${searchInput}`);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
 
 
   useEffect(() => {
@@ -37,8 +56,11 @@ function Navigation({ isLoaded }) {
           className="search-bar-input"
           type="text"
           placeholder="Search for anything"
+          value={searchInput}
+          onChange={handleSearchInputChange}
+          onKeyDown={handleKeyDown}
         />
-        <i className="fa-solid fa-magnifying-glass" style={{color: "#343433",}} onClick={null}></i>
+        <i className="fa-solid fa-magnifying-glass" style={{color: "#343433",}} onClick={handleSearch}></i>
       </div>
       <ul className='nav-ul'>
         <li className='language'>

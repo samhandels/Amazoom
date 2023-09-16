@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { ProductForm } from "./components/ProductForm";
 import { Cart } from "./components/Cart";
 import { Checkout } from "./components/Cart/Checkout.js";
+import { FilteredProducts } from "./components/FilteredProducts";
 
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <LandingPage />
+          </Route>
+          <Route exact path="/products/search/:searchInput">
+            <FilteredProducts />
           </Route>
           <Route exact path="/products/new">
             <ProductForm />
