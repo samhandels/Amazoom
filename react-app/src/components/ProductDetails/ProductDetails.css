@@ -160,3 +160,14 @@
     height: fit-content;
     max-width: 250px;
 }
+
+.update-delete-but {
+    align-self: center;
+    border-radius: 15px;
+    border: none;
+    height: 28px;
+    background-color: #ffd814;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 4px;
+}

@@ -95,8 +95,8 @@ export const ProductDetails = () => {
                     </div>
                     {currentUser && currentUser.id === product.user_id && (
                         <div>
-                            <button onClick={handleUpdateClick}>Update Product</button>
-                            <button onClick={handleDeleteClick}>Delete Product</button>
+                            <button className="update-delete-but" onClick={handleUpdateClick}>Update Product</button>
+                            <button className="update-delete-but" onClick={handleDeleteClick}>Delete Product</button>
                         </div>
                     )}
                 </div>
