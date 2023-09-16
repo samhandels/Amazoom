@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom'; // Import useHistory
 import { fetchProducts } from '../../store/productsReducer';
+import './FilteredProducts.css';
 
 export const FilteredProducts = () => {
     const { searchInput } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory(); // Initialize the useHistory hook
     const allProducts = useSelector(state => state.products.allProducts);
     const prodArray = allProducts ? Object.values(allProducts) : [];
     let searchProducts = [];
@@ -28,22 +30,22 @@ export const FilteredProducts = () => {
 
     return (
         <div>
-            {searchProducts.length ? (
-                <div id='productCard-holder-FilteredProducts'>
-                    {searchProducts.map((product) => (
-                        <div key={product.id}>
-                            <h3>{product.name}</h3>
+            <h1 className="all-products">Search Results</h1>
+            <div className="products-container">
+                {searchProducts.length ? (
+                    searchProducts.map((product) => (
+                        <div key={product.id} className="product-card" onClick={() => history.push(`/products/${product.id}`)}>
+                            <h2>{product.name}</h2>
                             <img src={product.image} alt={product.name} />
                             <p>{product.description}</p>
                             <p>Price: ${product.price}</p>
                             <p>Category: {product.category}</p>
                         </div>
-                    ))}
-                </div>
-            ) : (
-                <div>No Search Results</div>
-            )}
+                    ))
+                ) : (
+                    <div>No Search Results</div>
+                )}
+            </div>
         </div>
     );
 };
-
