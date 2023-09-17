@@ -61,7 +61,7 @@ const handleSubmit = async (e) => {
     <div className="product-form-header">
       <div className='samazon-img-title'>
 			<img className='samazon-logo-signup' src={samazonLogo} alt="Samazon Logo" />
-      <span>Create a Product</span>
+      <span className='create-a-product'>Create a Product</span>
     <div className="product-form-container">
       <form className='form-container' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
 
@@ -69,7 +69,7 @@ const handleSubmit = async (e) => {
         <div className="form-line">
           <div className="input-wrapper">
           <label>Product Name*</label>
-          <input
+          <input className='input-wide'
             type="text"
             name="name"
             value={name}
@@ -86,7 +86,7 @@ const handleSubmit = async (e) => {
           <label>Retail Price*</label>
           <div className="product-form__price">
             <span>$</span>
-            <input
+            <input className='input-thin'
               type="number"
               name="price"
               value={price}
@@ -102,7 +102,7 @@ const handleSubmit = async (e) => {
         <div className="form-line">
         <div className="input-wrapper">
           <label>Category*</label>
-          <select
+          <select className='input-wide'
             name="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -125,7 +125,7 @@ const handleSubmit = async (e) => {
         <div className="form-line">
         <div className="input-wrapper">
           <label>Quantity*</label>
-          <input
+          <input className='input-thin'
             type="number"
             name="quantity"
             value={quantity}
@@ -140,11 +140,11 @@ const handleSubmit = async (e) => {
         <div className="form-line">
         <div className="input-wrapper">
           <label>Product Description*</label>
-          <textarea
+          <textarea className='input-description'
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="At least 1-3 sentences"
+            placeholder="Tell us about your product"
             required
           />
           {errors.description && (
@@ -167,6 +167,7 @@ const handleSubmit = async (e) => {
                 </div>
             )}
             <input
+                className='choose-file'
                 type="file"
                 name="image"
                 onChange={(e) => setImage(e.target.files[0])}
@@ -176,7 +177,7 @@ const handleSubmit = async (e) => {
             {errors.image && <p className="form-errors">{errors.image}</p>}
         </div>
         <div className="form-submit">
-            <button type="submit">{productToUpdate ? "Update Product" : "List Product"}</button>
+            <button className='list-product' type="submit">{productToUpdate ? "Update Product" : "List Product"}</button>
         </div>
         </div>
       </form>

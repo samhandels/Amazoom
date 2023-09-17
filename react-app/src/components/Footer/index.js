@@ -2,12 +2,18 @@ import React from 'react'
 import './Footer.css'
 import samazonLogo from './samazonwhite.png';
 
-
-
 export const Footer = () => {
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
     return(
         <footer className='footer-container'>
-            <div className='to-top'>Back to top</div>
+            <div className='to-top' onClick={scrollToTop}>Back to top</div>
 
             <div className='footer-info'>
             <div className='sam-info' >
