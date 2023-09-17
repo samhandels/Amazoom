@@ -1,5 +1,6 @@
 import React from 'react'
 import './Footer.css'
+import samazonLogo from './samazonwhite.png';
 
 
 
@@ -9,7 +10,12 @@ export const Footer = () => {
             <div className='to-top'>Back to top</div>
 
             <div className='footer-info'>
-            <div className='sam-info' >Sam Handelsman</div>
+            <div className='sam-info' >
+                <img className='samazon-logo-img' src={samazonLogo} alt="Samazon Logo" />
+                    <span className='sam-handelsman'>by Sam Handelsman</span>
+                </div>
+            </div>
+            <div className='github-linkedin'>
                 <a href="https://www.linkedin.com/in/sam-handelsman/" target="_blank" rel="noopener noreferrer">
                 <i className="fa-brands fa-linkedin"></i>
                 </a>
@@ -17,6 +23,7 @@ export const Footer = () => {
                     <i className='fa-brands fa-github' alt="GitHub"></i>
                 </a>
             </div>
+            <div>Technologies Utilized: Flask, SQLAlchemy, React, Redux, Python, Javascript, AWS</div>
 
         </footer>
     )

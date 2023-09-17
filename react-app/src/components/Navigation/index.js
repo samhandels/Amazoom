@@ -17,7 +17,7 @@ function Navigation({ isLoaded }) {
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const history = useHistory();
   const [searchInput, setSearchInput] = useState('');
-  const categories = ['Electronics', 'Books', 'Sports & Outdoors', 'Home', 'Amazon Basics', 'Pet Supplies', 'Beauty', 'Other'];
+  const categories = ['Electronics', 'Books', 'Sports & Outdoors', 'Home', 'Basics', 'Pet Supplies', 'Beauty', 'Other'];
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);

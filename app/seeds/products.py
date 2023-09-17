@@ -7,7 +7,7 @@ def seed_products():
     product1 = Product(
         name='2023 MacBook Pro',
         price=1999.95,
-        description='Apple 2023 MacBook Pro Laptop M2 Pro chip with 10‑core CPU and 16‑core GPU: 14.2-inch Liquid Retina XDR Display, 16GB Unified Memory, 512GB SSD Storage',
+        description='Apple 2023 MacBook Pro Laptop M2 Pro chip with 10‑core CPU and 16‑core GPU. 14.2-inch Liquid Retina XDR Display, 16GB Unified Memory, 512GB SSD Storage. Perfect for the modern day student or employee.',
         user_id=1,
         category='Electronics',
         quantity=10,
@@ -25,7 +25,7 @@ def seed_products():
     product3 = Product(
         name='2021 TaylorMade Distance+ Golf Balls',
         price=17.99,
-        description='Distance Golf Balls by TaylorMade',
+        description='Distance Golf Balls by TaylorMade. React Speed Core. 342 Aerodynamic Dimple Pattern. 2 Layer Construction, Ionomer Cover, Mid-Launch, Max Distance, Mid/High Spin, And Softer Feel.',
         user_id=3,
         category='Sports & Outdoors',
         quantity=15,
@@ -95,7 +95,7 @@ def seed_products():
         image='https://m.media-amazon.com/images/I/7138AKuwbZL._AC_SL1500_.jpg'
     )
     product11 = Product(
-        name='Amazon Basics 3-Button Wired USB Computer Mouse, Single, Black',
+        name='Samazon Basics 3-Button Wired USB Computer Mouse, Single, Black',
         price=7.99,
         description='Computer mouse for easily navigating a computer interface; click, scroll, and more. Includes a USB-connected wired black mouse with 3 buttons for effortless fingertip control. High-definition (1000 dpi) optical tracking ensures responsive cursor control for precise tracking and easy text selection.',
         user_id=2,
