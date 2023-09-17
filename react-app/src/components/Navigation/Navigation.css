@@ -185,6 +185,23 @@
   top: 20px;
 }
 
+.categories-nav {
+  background-color: #232F3E;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+.categories-nav .category-item {
+  cursor: pointer;
+}
+
+
 @media (max-width: 740px){
   .cart-items-num {
     top:35px;

@@ -40,6 +40,7 @@ export const LandingPage = () => {
         "https://m.media-amazon.com/images/I/61E7T9rAKlL._SX3000_.jpg",
         "https://m.media-amazon.com/images/I/71+OQR1z9sL._SX3000_.jpg",
         "https://m.media-amazon.com/images/I/61ThNzdzDbL._SX3000_.jpg",
+        "https://m.media-amazon.com/images/I/61kxtw0Mi-L._SX3000_.jpg",
     ];
 
     const nextImage = () => {
@@ -77,7 +78,7 @@ export const LandingPage = () => {
                     </div>
                     <div className="landing__category">
                         <h3>Other Products</h3>
-                        <img src="https://images-na.ssl-images-amazon.com/images/G/01/US-hq/2022/img/Consumables/Everyday_Essentials/AMZQ3EE_Cross-1-StorefrontHero-D-1500x300-EN.jpg" alt="other" />
+                        <img src="https://img.buzzfeed.com/buzzfeed-static/static/2020-09/24/16/campaign_images/348ba8bac7a5/30-cool-and-random-products-youll-probably-use-se-2-24127-1600963495-17_dblbig.jpg?resize=1200:*" alt="other" />
                         <span onClick={() => handleCategoryClick("other")}>Shop Other</span>
                     </div>
                 </div>

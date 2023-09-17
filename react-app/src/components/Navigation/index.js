@@ -17,6 +17,7 @@ function Navigation({ isLoaded }) {
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const history = useHistory();
   const [searchInput, setSearchInput] = useState('');
+  const categories = ['Electronics', 'Books', 'Sports & Outdoors', 'Home', 'Amazon Basics', 'Pet Supplies', 'Beauty', 'Other'];
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -34,7 +35,9 @@ function Navigation({ isLoaded }) {
     }
   };
 
-
+  const handleCategoryClick = (searchTerm) => {
+    history.push(`/products/search/${searchTerm}`);
+  }
 
   useEffect(() => {
     if (sessionUser) {
@@ -44,6 +47,7 @@ function Navigation({ isLoaded }) {
 
 
   return (
+    <div className='whole-nav'>
     <div className='main-nav-bar'>
       <div>
         <NavLink className="samazon-logo" exact to="/">
@@ -87,6 +91,17 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </li>
       </ul>
+    </div>
+    <div className='categories-nav'>
+      {categories.map(category => (
+      <div
+          key={category}
+          className="category-item"
+          onClick={() => handleCategoryClick(category)}>
+          {category}
+      </div>
+  ))}
+    </div>
     </div>
   );
 }
