@@ -75,3 +75,7 @@
     border-radius: 4px;
     width: 100%;
 }
+
+#demo-link {
+    cursor: pointer;
+}
