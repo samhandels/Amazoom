@@ -33,9 +33,7 @@ export const ProductDetails = () => {
     }, [dispatch, productId]);
 
     useEffect(() => {
-        return () => {
           dispatch(clearSingleProduct());
-        };
     }, [dispatch]);
 
 
