@@ -170,10 +170,10 @@ def add_product_to_cart(id):
             return error.error_json()
 
         # if user has no cart, create one
-        if not current_user.shopping_carts:
-            new_cart = ShoppingCart(user_id=current_user.id)
-            db.session.add(new_cart)
-            db.session.commit()
+        # if not current_user.shopping_carts:
+        #     new_cart = ShoppingCart(user_id=current_user.id)
+        #     db.session.add(new_cart)
+        #     db.session.commit()
 
         # add cart item to cart
         form = CartItemForm()
@@ -205,4 +205,3 @@ def add_product_to_cart(id):
     except Exception as e:  # General exception to catch all errors
         print("Error:", str(e))
         return {"error": "Internal server error"}, 500
-
