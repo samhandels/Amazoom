@@ -28,6 +28,7 @@
     padding: 12px;
     min-width: 300px;
     max-width: 440px;
+    max-height: 550px;
 }
 
 .product-details-name {
