@@ -60,7 +60,7 @@ const handleSubmit = async (e) => {
   return (
     <div className="product-form-header">
       <div className='samazon-img-title'>
-			<img className='samazon-logo-signup' src={samazonLogo} alt="Samazon Logo" />
+			<img className='samazon-logo-form' src={samazonLogo} alt="Samazon Logo" />
       <span className='create-a-product'>Create a Product</span>
     <div className="product-form-container">
       <form className='form-container' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">

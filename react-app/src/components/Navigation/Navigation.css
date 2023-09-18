@@ -110,15 +110,21 @@
   font-size: 14px;
 }
 
-/* Profile Button Styles */
 .profile-button {
   border: none;
 }
 
 .user-button {
-  background-color: white;
+  background-color: transparent;
   border: none;
   margin-right: 9px;
+  color: white;
+  font-weight: bold;
+}
+
+.user-profile important{
+  display: flex;
+  align-items: start;
 }
 
 .user-button:hover {

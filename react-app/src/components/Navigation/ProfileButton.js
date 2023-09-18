@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
@@ -11,6 +11,8 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user);
+
 
   const openMenu = () => {
     if (showMenu) return;
@@ -47,7 +49,9 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className="user-button" onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+        <div className="user-profile">Hello, {sessionUser?.username} <br/>
+          Account & list
+        </div>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (

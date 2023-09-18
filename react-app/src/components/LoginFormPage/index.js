@@ -3,6 +3,8 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
+import samazonLogo from './samazonblack.png';
+
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -22,35 +24,36 @@ function LoginFormPage() {
   };
 
   return (
-    <>
+    <div className="login-modal">
+			<img className='samazon-logo-login' src={samazonLogo} alt="Samazon Logo" />
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
+      <form className="login-form" onSubmit={handleSubmit}>
+        {errors.length ? <ul className="error-ul">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
-        </ul>
-        <label>
+        </ul> : ""}
+        <label className="login-field">
           Email
-          <input
+          <input className="sign-in-input-modal"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        <label>
+        <label className="login-field">
           Password
-          <input
+          <input className="sign-in-input-modal"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="login-button grow" type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 
