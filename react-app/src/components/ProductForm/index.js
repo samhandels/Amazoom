@@ -113,7 +113,7 @@ const handleSubmit = async (e) => {
             <option value="Books">Books</option>
             <option value="Sports & Outdoors">Sports & Outdoors</option>
             <option value="Home">Home</option>
-            <option value="Amazon Basics">Amazon Basics</option>
+            <option value="Amazon Basics">Samazon Basics</option>
             <option value="Pet Supplies">Pet Supplies</option>
             <option value="Beauty">Beauty</option>
             <option value="Other">Other</option>
@@ -172,7 +172,7 @@ const handleSubmit = async (e) => {
                 name="image"
                 onChange={(e) => setImage(e.target.files[0])}
                 accept="image/*"
-                required
+                required={!productToUpdate}
             />
             {errors.image && <p className="form-errors">{errors.image}</p>}
         </div>
