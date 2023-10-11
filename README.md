@@ -24,8 +24,8 @@ Welcome to Samazon, the e-commerce platform engineered for tech enthusiasts. Ins
 ![Amazon AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E.svg?style=for-the-badge&logo=Amazon-AWS&logoColor=white)
 
 ## Future goals/implementations
-Product Reviews - allows user to leave reviews on purchased products
-Order History - View your previously ordered products
+- Product Reviews - allows user to leave reviews on purchased products
+- Order History - View your previously ordered products
 
 ## API Endpoints
 | Method   | URL                                      | Description                              |
