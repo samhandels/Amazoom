@@ -49,7 +49,6 @@ export const addToCart = (quantity, productId) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        console.log("DATA IN ADD TO CART THUNK ******", data)
         dispatch(addToCartAction(data));
         return data;
     }

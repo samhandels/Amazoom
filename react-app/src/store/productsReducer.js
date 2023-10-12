@@ -68,7 +68,6 @@ export const fetchcreateProduct = (productData) => async (dispatch) => {
                 formData.append(key, productData[key]);
             }
         }
-        console.log("formData in fetchCreateProduct -------------------------", formData)
         const response = await fetch('/api/products/new', {
             method: 'POST',
             body: formData

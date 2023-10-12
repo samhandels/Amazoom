@@ -5,7 +5,6 @@ import { fetchcreateProduct, editProduct } from '../../store/productsReducer';
 import './ProductForm.css';
 import samazonLogo from './samazonblack.png';
 
-
 export const ProductForm = ({ product, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,6 +19,7 @@ export const ProductForm = ({ product, formType }) => {
   const [quantity, setQuantity] = useState(productToUpdate?.quantity ?? 1);
   const [image, setImage] = useState(productToUpdate?.image ?? null);
   const [errors, setErrors] = useState({});
+
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,6 +56,7 @@ const handleSubmit = async (e) => {
       fileRef.current.click();
     }
   };
+
 
   return (
     <div className="product-form-header">
