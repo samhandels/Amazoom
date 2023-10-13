@@ -21,8 +21,26 @@ export const ProductForm = ({ product, formType }) => {
   const [errors, setErrors] = useState({});
 
 
+const validatePrice = (price) => {
+  const priceString = price.toString();
+  const decimalIndex = priceString.indexOf('.');
+  if (decimalIndex !== -1 && priceString.length - decimalIndex - 1 > 2) {
+    setErrors(prevErrors => ({ ...prevErrors, price: "Please use a valid price" }));
+    return false;
+  }
+  setErrors(prevErrors => {
+    const { price, ...otherErrors } = prevErrors;
+    return otherErrors;
+  });
+  return true;
+};
+
 const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validatePrice(price)) {
+      return;
+    }
 
     if (productToUpdate) {
         const formData = new FormData();
@@ -57,6 +75,14 @@ const handleSubmit = async (e) => {
     }
   };
 
+  const handlePriceChange = (e) => {
+    const newPrice = parseFloat(e.target.value);
+    if (!isNaN(newPrice)) {
+      setPrice(newPrice);
+      validatePrice(newPrice);
+    }
+  };
+
 
   return (
     <div className="product-form-header">
@@ -85,13 +111,14 @@ const handleSubmit = async (e) => {
         <div className="form-line">
         <div className="input-wrapper">
           <label>Retail Price*</label>
+          {/* {errors.price && <p className="form-errors">{errors.price}</p>} */}
           <div className="product-form__price">
             <span>$</span>
             <input className='input-thin'
               type="number"
               name="price"
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              onChange={handlePriceChange}
               step="0.01"
               required
             />
