@@ -6,6 +6,13 @@ Welcome to Samazon, the e-commerce platform engineered for tech enthusiasts. Ins
 
 ![samazon-screenshot](https://github.com/samhandels/Samazon/assets/123411173/17889e08-9b0b-44ee-9255-a9f9aac5e426)
 
+## Features
+Products - Full Create, Read, Update and Delete functionality for a user with products. Able to utilize AWS and choose an image to display for each product.
+
+Shopping Cart - Full CRUD functionality for Shopping cart, allowing users to add and delete products from the shopping cart and ability to change the quantity of the products you'd like to purchase. Cycle is completed with the checkout page and completing your purchase.
+
+Search Bar Feature - Ability to search in the navigation for all the products by name, description and category of product and will return a filtered search of products matching the description in the search.
+
 ## Technologies Used
 
 ### Backend
@@ -22,11 +29,6 @@ Welcome to Samazon, the e-commerce platform engineered for tech enthusiasts. Ins
 
 ### Cloud Services
 ![Amazon AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E.svg?style=for-the-badge&logo=Amazon-AWS&logoColor=white)
-
-### Features
-Products - Full Create, Read, Update and Delete functionality for a user with products. Able to utilize AWS and choose an image to display for each product.
-
-Shopping Cart - Full CRUD functionality for Shopping cart, allowing users to add and delete products from the shopping cart and ability to change the quantity of the products you'd like to purchase. Cycle is completed with the checkout page and completing your purchase.
 
 ## Future goals/implementations
 - Product Reviews - allows user to leave reviews on purchased products
