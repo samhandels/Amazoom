@@ -23,9 +23,69 @@ Welcome to Samazon, the e-commerce platform engineered for tech enthusiasts. Ins
 ### Cloud Services
 ![Amazon AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E.svg?style=for-the-badge&logo=Amazon-AWS&logoColor=white)
 
+### Features
+Products - Full Create, Read, Update and Delete functionality for a user with products. Able to utilize AWS and choose an image to display for each product.
+
+Shopping Cart - Full CRUD functionality for Shopping cart, allowing users to add and delete products from the shopping cart and ability to change the quantity of the products you'd like to purchase. Cycle is completed with the checkout page and completing your purchase.
+
 ## Future goals/implementations
 - Product Reviews - allows user to leave reviews on purchased products
 - Order History - View your previously ordered products
+
+## Set Up
+
+- Clone the repo
+
+### Back End Server
+
+- Open up a new terminal
+
+- Open up the project folder
+
+- Install dependencies
+
+  ```bash
+  pipenv install -r requirements.txt
+  ```
+
+- Create a **.env** file based on the example
+
+- Run the following commands to open your pipenv, migrate the database, seed the database, and run the Flask app
+
+  ```bash
+  pipenv shell
+  ```
+
+  ```bash
+  flask db upgrade
+  ```
+
+  ```bash
+  flask seed all
+  ```
+
+  ```bash
+  flask run
+  ```
+
+### Front End
+
+- Open up another new terminal
+
+- Direct to the <code>react-app</code> folder
+
+- Install dependencies
+
+  ```bash
+  npm install
+  ```
+
+- Start the React App
+
+  ```bash
+  npm start
+  ```
+
 
 ## API Endpoints
 | Method   | URL                                      | Description                              |
