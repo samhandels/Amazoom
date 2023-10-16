@@ -87,22 +87,3 @@ Search Bar Feature - Ability to search in the navigation for all the products by
   ```bash
   npm start
   ```
-
-
-## API Endpoints
-| Method   | URL                                      | Description                              |
-| -------- | ---------------------------------------- | ---------------------------------------- |
-| `POST`    | `/api/auth/login`                        | Logs in user, Recieve body containing credential & password  |
-| `POST`   | `/api/auth/signup`                        | Signs up user, Recieve body containing username, email, password & address  |
-| `GET`    | `/api/auth/logout`                          | Logs out user |
-| `GET`  | `/api/users`                          | Fetches all users |
-| `GET`   | `/api/users/:userId`                 | Fetches single user |
-| `GET`   | `/api/products?=`                 | Fetches all products, takes optional query string |
-| `GET`   | `/api/products/:productId`                 | Fetches single product  |
-| `POST`   | `/api/products/new`                 | Creates new product   |
-| `PUT`   | `/api/products/:productId`                 | Updates product  |
-| `DELETE`   | `/api/products/:productId`                 | Deletes product   |
-| `GET`   | `/api/cart`     | Fetches user cart |
-| `POST`   | `/api/products/:productId/cart`     | Adds product to user cart |
-| `DELETE`   | `/api/carts/:productId`     | Removes product from cart |
-| `PUT`   | `/api/carts`     | Updates quantity of product in cart |
