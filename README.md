@@ -7,11 +7,14 @@ Welcome to Samazon, the e-commerce platform engineered for tech enthusiasts. Ins
 ![samazon-screenshot](https://github.com/samhandels/Samazon/assets/123411173/17889e08-9b0b-44ee-9255-a9f9aac5e426)
 
 ## Features
-Products - Full Create, Read, Update and Delete functionality for a user with products. Able to utilize AWS and choose an image to display for each product.
+Products - Samazon offers users a robust set of features for managing products. It utilizes Python and Flask for the backend, providing a secure and efficient foundation for handling product data. To enhance the user experience, AWS services are integrated for seamless image uploads. This not only adds visual appeal but also ensures that product images are stored and delivered reliably. SQLAlchemy, a powerful ORM (Object-Relational Mapping) tool, is employed to optimize database operations. This ensures data integrity, efficient querying, and streamlined data management. React's component-based architecture and hooks like useState and useEffect enable the creation of dynamic and responsive user interfaces. Users can easily create, update, and delete product listings.
 
-Shopping Cart - Full CRUD functionality for Shopping cart, allowing users to add and delete products from the shopping cart and ability to change the quantity of the products you'd like to purchase. Cycle is completed with the checkout page and completing your purchase.
+Shopping Cart - The shopping cart functionality in Samazon is designed with full CRUD capabilities, allowing users to easily add, delete, and modify products within their cart. This provides a seamless and flexible shopping experience. Users can adjust the quantity of products they wish to purchase, ensuring a tailored shopping experience that meets their needs. The shopping journey is completed with a dedicated checkout page, streamlining the purchase process and enhancing user convenience.
 
-Search Bar Feature - Ability to search in the navigation for all the products by name, description and category of product and will return a filtered search of products matching the description in the search.
+Search Bar Feature - Samazon's navigation includes a powerful search bar feature that enables users to quickly find products based on name, description, and category. The search results are intelligently filtered to match the user's query.
+
+<img width="1510" alt="shopping-cart-samazon" src="https://github.com/samhandels/Samazon/assets/123411173/2a2b91e8-09aa-43cc-8482-f92e088c6a44">
+
 
 ## Technologies Used
 
