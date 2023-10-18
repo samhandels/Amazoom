@@ -78,7 +78,9 @@
 }
 
 .cart__no-items {
-    max-width: 600px;
+    max-width: 1000px;
+    min-width: 800px;
+    max-height: 800px;
     background-color: white;
     padding: 40px;
     border-radius: 8px;
