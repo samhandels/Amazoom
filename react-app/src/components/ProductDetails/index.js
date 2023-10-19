@@ -104,12 +104,16 @@ export const ProductDetails = () => {
                     </div>
                     <span className="product-details-price-addtocart">${product?.price}</span>
                     <img src={prime} alt="prime" className="prime-logo" />
-                    <div className="product-details-returns">FREE Returns</div>
+                    <div className="product-details-returns-cart">FREE Returns</div>
                     <div className="free-delivery">FREE delivery by <strong>{formattedDate}.</strong></div>
                     <div className="deliver-to">Deliver to {currentUser?.username} - {currentUser?.address}</div>
                     <div className="stock">In Stock</div>
                     <div className="stock-quantity">Only {product?.quantity} left in stock.</div>
-                    <button className="add-to-cart" onClick={addToCartHandler}>Add to Cart</button>
+                    {currentUser && currentUser.id === product.user_id ? (
+                        <div className="cannot-purchase-own-product">You can't purchase your own product</div>
+                    ) : (
+                        <button className="add-to-cart" onClick={addToCartHandler}>Add to Cart</button>
+                    )}
                     <div className="product-samazon-info">
                         <div className="product-addtocart-left">
                             <span>Payment</span>

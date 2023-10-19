@@ -65,6 +65,11 @@
     border-bottom: 1px solid hsla(0,0%,50.2%,.295);
 }
 
+.product-details-returns-cart {
+    font-size: 14px;
+    color: #007185;
+}
+
 .secure-transaction{
     color: #007185;
 }
